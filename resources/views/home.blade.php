@@ -636,8 +636,8 @@
     <div class="top-bar">
         <div class="container">
             <div class="contact-info">
-                <span><i class="fas fa-envelope"></i> khouseinofficial.com</span>
-                <span><i class="fas fa-phone"></i> (+62) 857 8715 888 95</span>
+                <span><i class="fas fa-envelope"></i> k.house@gmail.com</span>
+                <span><i class="fas fa-phone"></i> (+62) 812 3456 7890</span>
             </div>
             <div class="social-links">
                 <a href="#"><i class="fab fa-facebook"></i></a>
@@ -660,7 +660,7 @@
                 <a href="#about">ABOUT US</a>
                 <a href="#check-in">CHECK IN, CHECK OUT</a>
                 <a href="#blog">BLOG</a>
-                <a href="login.html" class="btn-get-started">GET STARTED</a>
+                <a href="login.blade.php" class="btn-get-started">GET STARTED</a>
             </div>
         </div>
     </nav>
@@ -681,7 +681,7 @@
     <section class="stats">
         <div class="container">
             <div class="stat-item">
-                <h3>486+</h3>
+                <h3>100+</h3>
                 <p>Kost Terbaik</p>
             </div>
             <div class="stat-item">
@@ -689,11 +689,11 @@
                 <p>Partner Kami</p>
             </div>
             <div class="stat-item">
-                <h3>48K+</h3>
+                <h3>12K+</h3>
                 <p>Customer anda</p>
             </div>
             <div class="stat-item">
-                <h3>071h+</h3>
+                <h3>07th+</h3>
                 <p>Pengalaman Terbaik</p>
             </div>
         </div>
@@ -713,22 +713,22 @@
                     <div class="author">
                         <div class="author-avatar">A</div>
                         <div>
-                            <strong>Mr. Agilla Umara</strong>
+                            <strong>Mr. Aqilla Umara</strong>
                         </div>
                     </div>
                 </div>
                 <div class="featured-images">
                     <div class="featured-image">
-                        <img src="kost-image1.jpg" alt="Kost 1">
+                        <img src="kost-image1.png" alt="Kost 1">
                     </div>
                     <div class="featured-image">
-                        <img src="kost-image2.jpg" alt="Kost 2">
+                        <img src="kost-image2.png" alt="Kost 2">
                     </div>
                     <div class="featured-image">
-                        <img src="kost-image3.jpg" alt="Kost 3">
+                        <img src="kost-image3.png" alt="Kost 3">
                     </div>
                     <div class="featured-image">
-                        <img src="kost-image4.jpg" alt="Kost 4">
+                        <img src="kost-image4.png" alt="Kost 4">
                     </div>
                 </div>
             </div>
@@ -801,8 +801,8 @@
                     <div class="testimonial-author">
                         <img src="https://via.placeholder.com/50" alt="Author">
                         <div class="testimonial-author-info">
-                            <h4>Mr. Agilla Umara</h4>
-                            <p>CEO of Company</p>
+                            <h4>Mr. Aqilla Umara</h4>
+                            <p>CEO of GOOGLE</p>
                         </div>
                     </div>
                 </div>
@@ -819,8 +819,8 @@
                     <div class="testimonial-author">
                         <img src="https://via.placeholder.com/50" alt="Author">
                         <div class="testimonial-author-info">
-                            <h4>Mr. Mardiyanta Yudor</h4>
-                            <p>Freelancer</p>
+                            <h4>Mr. Mardiyanto Yuste</h4>
+                            <p>CEO of Apple</p>
                         </div>
                     </div>
                 </div>
@@ -863,9 +863,9 @@
             
             <div class="footer-contact">
                 <h4>Tetap bersama kami</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</p>
+                <p><i class="fas fa-map-marker-alt"></i> Malang, Indonesia</p>
                 <p><i class="fas fa-envelope"></i> khouseinofficial.com</p>
-                <p><i class="fas fa-phone"></i> (+62) 857 8715 888 95</p>
+                <p><i class="fas fa-phone"></i> (+62) 812 3456 7890</p>
             </div>
         </div>
         
