@@ -17,13 +17,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('background-kost.jpg');
+            background: linear-gradient(rgba(45, 69, 56, 0.7), rgba(45, 69, 56, 0.7)), url('{{ asset("background-kost.jpg") }}');
             background-size: cover;
             background-position: center;
         }
 
         .login-container {
-            background: rgba(255, 255, 255, 0.95);
+            background: #f8f5f0;
             padding: 50px 40px;
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
@@ -45,7 +45,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #333;
+            color: #2d4538;
             font-size: 14px;
         }
 
@@ -77,6 +77,7 @@
             align-items: center;
             gap: 5px;
             cursor: pointer;
+            color: #666;
         }
 
         .remember-forgot a {
@@ -91,7 +92,7 @@
         .btn-login {
             width: 100%;
             padding: 12px;
-            background: #1a1a1a;
+            background: #2d4538;
             color: white;
             border: none;
             border-radius: 25px;
@@ -102,9 +103,9 @@
         }
 
         .btn-login:hover {
-            background: #333;
+            background: #3d5a4a;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(45, 69, 56, 0.4);
         }
 
         .register-link {
@@ -150,7 +151,7 @@
         </form>
 
         <div class="register-link">
-            Belum punya akun? <a href="register.html">Daftar disini</a>
+            Belum punya akun? <a href="{{ route('register') }}">Daftar disini</a>
         </div>
     </div>
 </body>

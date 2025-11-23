@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - K.House</title>
+    <title>Register - K.House</title>
     <style>
         * {
             margin: 0;
@@ -13,17 +13,18 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('background-kost.jpg');
+            background: linear-gradient(rgba(45, 69, 56, 0.7), rgba(45, 69, 56, 0.7)), url('{{ asset("background-kost.jpg") }}');
             background-size: cover;
             background-position: center;
+            padding: 20px;
         }
 
-        .login-container {
-            background: rgba(255, 255, 255, 0.95);
+        .register-container {
+            background: #f8f5f0;
             padding: 50px 40px;
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
@@ -45,7 +46,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #333;
+            color: #2d4538;
             font-size: 14px;
         }
 
@@ -64,34 +65,10 @@
             box-shadow: 0 0 0 3px rgba(61, 90, 74, 0.1);
         }
 
-        .remember-forgot {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            font-size: 13px;
-        }
-
-        .remember-forgot label {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .remember-forgot a {
-            color: #3d5a4a;
-            text-decoration: none;
-        }
-
-        .remember-forgot a:hover {
-            text-decoration: underline;
-        }
-
-        .btn-login {
+        .btn-register {
             width: 100%;
             padding: 12px;
-            background: #1a1a1a;
+            background: #2d4538;
             color: white;
             border: none;
             border-radius: 25px;
@@ -99,58 +76,62 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            margin-top: 10px;
         }
 
-        .btn-login:hover {
-            background: #333;
+        .btn-register:hover {
+            background: #3d5a4a;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(45, 69, 56, 0.4);
         }
 
-        .register-link {
+        .login-link {
             margin-top: 25px;
             font-size: 14px;
             color: #666;
         }
 
-        .register-link a {
+        .login-link a {
             color: #3d5a4a;
             font-weight: 600;
             text-decoration: none;
         }
 
-        .register-link a:hover {
+        .login-link a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <img src="logo-khouse.png" alt="K.House Logo" class="logo">
+    <div class="register-container">
+        <img src="{{ asset('logo-khouse.png') }}" alt="K.House Logo" class="logo">
         
         <form>
             <div class="form-group">
+                <label>Nama</label>
+                <input type="text" placeholder="" required>
+            </div>
+
+            <div class="form-group">
                 <label>Email</label>
-                <input type="email" placeholder="Enter your email" required>
+                <input type="email" placeholder="" required>
             </div>
 
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" placeholder="Enter your password" required>
+                <input type="password" placeholder="" required>
             </div>
 
-            <div class="remember-forgot">
-                <label>
-                    <input type="checkbox"> Lupa password?
-                </label>
-                <a href="#">Forgot Password</a>
+            <div class="form-group">
+                <label>Konfirmasi Password</label>
+                <input type="password" placeholder="" required>
             </div>
 
-            <button type="submit" class="btn-login">Login</button>
+            <button type="submit" class="btn-register">Register</button>
         </form>
 
-        <div class="register-link">
-            Belum punya akun? <a href="register.html">Daftar disini</a>
+        <div class="login-link">
+            Sudah punya akun? <a href="{{ route('login') }}">Login disini</a>
         </div>
     </div>
 </body>

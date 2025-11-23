@@ -657,10 +657,10 @@
             </div>
             <div class="nav-links">
                 <a href="#home">HOME</a>
-                <a href="#about">ABOUT US</a>
+                <a href="{{ route('about') }}">ABOUT US</a>
                 <a href="#check-in">CHECK IN, CHECK OUT</a>
                 <a href="#blog">BLOG</a>
-                <a href="login.blade.php" class="btn-get-started">GET STARTED</a>
+                <a href="{{ route('login') }}" class="btn-get-started">GET STARTED</a>
             </div>
         </div>
     </nav>
@@ -671,8 +671,8 @@
             <h1>Ayo, <span class="highlight">Cari</span> Kost<br>Impian <span class="highlight">Anda</span> Disini..</h1>
             <p>Kost impian Anda hanya sekali klik jauhnya. Temukan kenyamanan dalam Semua Kost di Indonesia.</p>
             <div class="hero-buttons">
-                <a href="#" class="btn-primary">LIHAT SELENGKAPNYA</a>
-                <a href="#" class="btn-secondary">COBA SEKARANG</a>
+                <a href="{{ route('login') }}" class="btn-primary">LIHAT SELENGKAPNYA</a>
+                <a href="{{ route('login') }}" class="btn-secondary">COBA SEKARANG</a>
             </div>
         </div>
     </section>
@@ -685,7 +685,7 @@
                 <p>Kost Terbaik</p>
             </div>
             <div class="stat-item">
-                <h3>26</h3>
+                <h3>10</h3>
                 <p>Partner Kami</p>
             </div>
             <div class="stat-item">
@@ -693,7 +693,7 @@
                 <p>Customer anda</p>
             </div>
             <div class="stat-item">
-                <h3>07th+</h3>
+                <h3>02th+</h3>
                 <p>Pengalaman Terbaik</p>
             </div>
         </div>
@@ -739,7 +739,7 @@
     <section class="services">
         <div class="container">
             <div class="service-image" style="position: relative;">
-                <img src="lobby-image.jpg" alt="Lobby Kost">
+                <img src="background-kost.png" alt="Lobby Kost">
                 <div class="customer-badge">
                     <h4>99+</h4>
                     <p>Customer Suka</p>
@@ -797,7 +797,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p>"Suka banget sama layanan disini, tempatnya bagus find super akses"</p>
+                    <p>"Suka banget sama layanan disini, tempatnya bagus dan mudah di akses"</p>
                     <div class="testimonial-author">
                         <img src="https://via.placeholder.com/50" alt="Author">
                         <div class="testimonial-author-info">
@@ -833,7 +833,7 @@
         <div class="container">
             <div class="footer-about">
                 <h3><img src="logo-khouse.png" alt="Logo" style="width: 40px; vertical-align: middle; margin-right: 10px;">K.HOUSE</h3>
-                <p>Aplikasi inovatif dalam pengelolaanm dan dalam penggelolaan dari Kost di Indonesia.</p>
+                <p>Aplikasi inovatif penggelolaan dari Kost di Indonesia.</p>
                 <div class="footer-social">
                     <a href="#"><i class="fab fa-facebook"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -849,15 +849,6 @@
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Check in Check out</a></li>
                     <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-links">
-                <h4>Site Links</h4>
-                <ul>
-                    <li><a href="#">Disclaimer</a></li>
-                    <li><a href="#">Perlindungan Kami</a></li>
-                    <li><a href="#">Syarat Pemesanan</a></li>
                 </ul>
             </div>
             
