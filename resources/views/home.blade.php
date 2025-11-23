@@ -658,8 +658,7 @@
             <div class="nav-links">
                 <a href="#home">HOME</a>
                 <a href="{{ route('about') }}">ABOUT US</a>
-                <a href="#check-in">CHECK IN, CHECK OUT</a>
-                <a href="#blog">BLOG</a>
+                <a href="{{ route('cari-kost') }}" >CARI KOST</a>
                 <a href="{{ route('login') }}" class="btn-get-started">GET STARTED</a>
             </div>
         </div>
@@ -737,14 +736,6 @@
 
     <!-- Services Section -->
     <section class="services">
-        <div class="container">
-            <div class="service-image" style="position: relative;">
-                <img src="background-kost.png" alt="Lobby Kost">
-                <div class="customer-badge">
-                    <h4>99+</h4>
-                    <p>Customer Suka</p>
-                </div>
-            </div>
             
             <div class="service-content">
                 <p class="section-tag">LAYANAN TERBAIK</p>

@@ -21,3 +21,8 @@ Route::get('/register', function () {
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+
+// Cari Kost statis
+Route::get('/cari-kost', function () {
+    return view('cari-kost');
+})->name('cari-kost');

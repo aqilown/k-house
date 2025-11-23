@@ -599,8 +599,7 @@
             <div class="nav-links">
                 <a href="{{ route('home') }}">HOME</a>
                 <a href="{{ route('about') }}">ABOUT US</a>
-                <a href="#check-in">CHECK IN, CHECK OUT</a>
-                <a href="#blog">BLOG</a>
+                <a href="{{ route('cari-kost') }}" >CARI KOST</a>
                 <a href="{{ route('login') }}" class="btn-get-started">GET STARTED</a>
             </div>
         </div>
