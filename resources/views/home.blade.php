@@ -215,7 +215,7 @@
         /* Featured Section */
         .featured {
             padding: 80px 20px;
-            background: #f8f5f0;
+            background: #F3ECDC;
         }
 
         .featured .container {
@@ -738,11 +738,8 @@
     <section class="services">
             
             <div class="service-content">
-                <p class="section-tag">LAYANAN TERBAIK</p>
-                <h2>Kami Berikan Tempat dan<br>Layanan Terbaik</h2>
-                <p>Memberikan layanan terbaik dengan tempat yang nyaman untuk anda menempati yang tentunya dengan dengan dengan anda</p>
-                <p><i class="fas fa-check-circle" style="color: #3d5a4a;"></i> No. 1* Layanan Kost Terbaik Di Indonesia</p>
-                <p><i class="fas fa-check-circle" style="color: #3d5a4a;"></i> 7 Tahun Lebih kita Berada Untuk Anda</p>
+                <p class="section-tag">LAYANAN YANG KAMI BERIKAN</p>
+                <h2>Layanan Yang Mendukung</h2>
             </div>
 
             <div class="service-cards">

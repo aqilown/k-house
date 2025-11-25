@@ -229,7 +229,7 @@
         /* Results Section */
         .results-section {
             padding: 60px 20px;
-            background: #f8f5f0;
+            background: #F3ECDC;
         }
 
         .results-section .container {

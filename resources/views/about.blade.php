@@ -290,7 +290,7 @@
         /* Mission Section */
         .mission-section {
             padding: 80px 20px;
-            background: #f8f5f0;
+            background: #F3ECDC;
         }
 
         .mission-section .container {
