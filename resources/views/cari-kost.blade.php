@@ -162,12 +162,12 @@
 
         /* Search Box */
         .search-box {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 50px;
-            padding: 20px 30px;
+            padding: 15px 20px;
             margin-top: 40px;
             display: flex;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
             max-width: 900px;
@@ -177,9 +177,9 @@
             flex: 1;
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 10px 0;
-            border-right: 1px solid #e0e0e0;
+            gap: 12px;
+            padding: 8px 15px;
+            border-right: 1px solid #d0d0d0;
         }
 
         .search-field:last-of-type {
@@ -188,7 +188,7 @@
 
         .search-field i {
             color: #3d5a4a;
-            font-size: 20px;
+            font-size: 22px;
         }
 
         .search-field-content {
@@ -196,29 +196,34 @@
         }
 
         .search-field-label {
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 5px;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 0;
+            font-weight: 500;
         }
 
-        .search-field input {
+        .search-field input,
+        .search-field select {
             border: none;
             outline: none;
             font-size: 14px;
             width: 100%;
             color: #333;
             font-weight: 500;
+            background: transparent;
+            cursor: pointer;
         }
 
         .btn-search {
             background: #3d5a4a;
             color: white;
-            padding: 15px 40px;
+            padding: 15px 45px;
             border-radius: 30px;
             border: none;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 16px;
         }
 
         .btn-search:hover {
@@ -274,26 +279,28 @@
         /* Kost Cards */
         .kost-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 25px;
         }
 
         .kost-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             transition: all 0.3s;
+            display: grid;
+            grid-template-columns: 280px 1fr;
         }
 
         .kost-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
         }
 
         .kost-image {
             width: 100%;
-            height: 220px;
+            height: 100%;
             overflow: hidden;
             position: relative;
         }
@@ -304,78 +311,103 @@
             object-fit: cover;
         }
 
-        .kost-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #3d5a4a;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
         .kost-content {
-            padding: 20px;
-        }
-
-        .kost-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #1a1a1a;
-            margin-bottom: 10px;
-        }
-
-        .kost-location {
+            padding: 25px 30px;
             display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #666;
-            font-size: 14px;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .kost-header {
             margin-bottom: 15px;
         }
 
         .kost-rating {
             display: flex;
             align-items: center;
-            gap: 5px;
-            margin-bottom: 15px;
+            gap: 8px;
+            margin-bottom: 8px;
         }
 
         .stars {
             color: #ffa500;
+            font-size: 14px;
         }
 
         .rating-text {
             color: #666;
+            font-size: 13px;
+        }
+
+        .kost-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .kost-location {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #666;
             font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .kost-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            background: #f0f0f0;
+            color: #666;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .kost-rooms {
+            margin-bottom: 20px;
+        }
+
+        .room-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .room-item:last-child {
+            border-bottom: none;
+        }
+
+        .room-type {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .room-price {
+            font-weight: bold;
+            color: #3d5a4a;
+            font-size: 15px;
         }
 
         .kost-footer {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: flex-end;
             padding-top: 15px;
-            border-top: 1px solid #f0f0f0;
-        }
-
-        .kost-price {
-            font-size: 24px;
-            font-weight: bold;
-            color: #3d5a4a;
-        }
-
-        .price-period {
-            font-size: 12px;
-            color: #999;
-            font-weight: normal;
         }
 
         .btn-detail {
             background: #3d5a4a;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 30px;
             border-radius: 25px;
             text-decoration: none;
             font-size: 14px;
@@ -385,6 +417,7 @@
 
         .btn-detail:hover {
             background: #2d4538;
+            transform: scale(1.05);
         }
 
         /* Pagination */
@@ -610,7 +643,7 @@
         <div class="container">
             <div class="results-header">
                 <div class="results-count">
-                    Menampilkan <strong>4</strong> kost tersedia
+                    Menampilkan <strong>3</strong> kost tersedia
                 </div>
             </div>
 
@@ -620,30 +653,42 @@
                 <div class="kost-card">
                     <div class="kost-image">
                         <img src="{{ asset('kost-image1.png') }}" alt="Kost 1">
-                        <div class="kost-badge">Putra</div>
                     </div>
                     <div class="kost-content">
-                        <h3 class="kost-title">Kost Modern Surabaya</h3>
-                        <div class="kost-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Jl. Raya Darmo, Surabaya</span>
-                        </div>
-                        <div class="kost-rating">
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                        <div class="kost-header">
+                            <div class="kost-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <span style="color: #333; font-weight: 600;">4.3/5</span>
+                                </div>
+                                <span class="rating-text">(199+ reviews)</span>
                             </div>
-                            <span class="rating-text">(45 reviews)</span>
+                            <h3 class="kost-title">Kost 1</h3>
+                            <div class="kost-location">
+                                <span>Lowokwaru, Malang</span>
+                            </div>
+                            <div class="kost-badges">
+                                <span class="badge">Unit Laundry</span>
+                                <span class="badge">Perlengkapan Dapur</span>
+                                <span class="badge">Putra</span>
+                            </div>
+                        </div>
+                        <div class="kost-rooms">
+                            <div class="room-item">
+                                <span class="room-type">Kamar Mandi Dalam</span>
+                                <span class="room-price">Mulai Rp 1000K</span>
+                            </div>
+                            <div class="room-item">
+                                <span class="room-type">Dapur Dalam</span>
+                                <span class="room-price">Mulai Rp 1200K</span>
+                            </div>
+                            <div class="room-item">
+                                <span class="room-type">Dapur dan Kamar Mandi Dalam</span>
+                                <span class="room-price">Mulai Rp 1500K</span>
+                            </div>
                         </div>
                         <div class="kost-footer">
-                            <div>
-                                <span class="kost-price">Rp 1.500.000</span>
-                                <span class="price-period">/bulan</span>
-                            </div>
-                            <a href="#" class="btn-detail">Detail</a>
+                            <a href="#" class="btn-detail">Lihat Selengkapnya</a>
                         </div>
                     </div>
                 </div>
@@ -652,30 +697,34 @@
                 <div class="kost-card">
                     <div class="kost-image">
                         <img src="{{ asset('kost-image2.png') }}" alt="Kost 2">
-                        <div class="kost-badge">Putri</div>
                     </div>
                     <div class="kost-content">
-                        <h3 class="kost-title">Kost Nyaman Jakarta</h3>
-                        <div class="kost-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Jl. Sudirman, Jakarta Pusat</span>
-                        </div>
-                        <div class="kost-rating">
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
+                        <div class="kost-header">
+                            <div class="kost-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <span style="color: #333; font-weight: 600;">3.8/5</span>
+                                </div>
+                                <span class="rating-text">(239 reviews)</span>
                             </div>
-                            <span class="rating-text">(32 reviews)</span>
+                            <h3 class="kost-title">Kost 2</h3>
+                            <div class="kost-location">
+                                <span>Singosari, Malang</span>
+                            </div>
+                            <div class="kost-badges">
+                                <span class="badge">Ruangan luas</span>
+                                <span class="badge">Ruangan ber AC</span>
+                                <span class="badge">Putri</span>
+                            </div>
+                        </div>
+                        <div class="kost-rooms">
+                            <div class="room-item">
+                                <span class="room-type">Room 1</span>
+                                <span class="room-price">Mulai Rp 800K</span>
+                            </div>
                         </div>
                         <div class="kost-footer">
-                            <div>
-                                <span class="kost-price">Rp 2.000.000</span>
-                                <span class="price-period">/bulan</span>
-                            </div>
-                            <a href="#" class="btn-detail">Detail</a>
+                            <a href="#" class="btn-detail">Lihat Selengkapnya</a>
                         </div>
                     </div>
                 </div>
@@ -684,43 +733,55 @@
                 <div class="kost-card">
                     <div class="kost-image">
                         <img src="{{ asset('kost-image3.png') }}" alt="Kost 3">
-                        <div class="kost-badge">Campur</div>
                     </div>
                     <div class="kost-content">
-                        <h3 class="kost-title">Kost Strategis Bandung</h3>
-                        <div class="kost-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Jl. Dago, Bandung</span>
-                        </div>
-                        <div class="kost-rating">
-                            <div class="stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                        <div class="kost-header">
+                            <div class="kost-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <span style="color: #333; font-weight: 600;">New</span>
+                                </div>
+                                <span class="rating-text">to Spotter</span>
                             </div>
-                            <span class="rating-text">(58 reviews)</span>
+                            <h3 class="kost-title">Kost 3</h3>
+                            <div class="kost-location">
+                                <span>Araya, Malang</span>
+                            </div>
+                            <div class="kost-badges">
+                                <span class="badge">Unit Laundry</span>
+                                <span class="badge">Perlengkapan Dapur</span>
+                                <span class="badge">Ruangan Fitness</span>
+                                <span class="badge">Ruangan ber AC</span>
+                                <span class="badge">Campur</span>
+                            </div>
+                        </div>
+                        <div class="kost-rooms">
+                            <div class="room-item">
+                                <span class="room-type">Mezzanine</span>
+                                <span class="room-price">Mulai Rp 2000K</span>
+                            </div>
+                            <div class="room-item">
+                                <span class="room-type">1 Tempat Tidur</span>
+                                <span class="room-price">Mulai Rp 1500K</span>
+                            </div>
+                            <div class="room-item">
+                                <span class="room-type">2 Tempat Tidur</span>
+                                <span class="room-price">Mulai Rp 2000K</span>
+                            </div>
                         </div>
                         <div class="kost-footer">
-                            <div>
-                                <span class="kost-price">Rp 1.200.000</span>
-                                <span class="price-period">/bulan</span>
-                            </div>
-                            <a href="#" class="btn-detail">Detail</a>
+                            <a href="#" class="btn-detail">Lihat Selengkapnya</a>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                
             <!-- Pagination -->
             <div class="pagination">
                 <a href="#" class="active">1</a>
                 <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
                 <a href="#">...</a>
-                <a href="#">10</a>
+                <a href="#">5</a>
             </div>
         </div>
     </section>
@@ -744,7 +805,6 @@
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">About Us</a></li>
-                    <li><a href="#">Check in Check out</a></li>
                     <li><a href="#">Cari Kost</a></li>
                 </ul>
             </div>
