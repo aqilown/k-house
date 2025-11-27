@@ -26,3 +26,8 @@ Route::get('/about', function () {
 Route::get('/cari-kost', function () {
     return view('cari-kost');
 })->name('cari-kost');
+
+// Admin Dashboard statis
+Route::get('/admin/dashboard', function () {
+    return view('layouts.admin_dashboard');
+});
