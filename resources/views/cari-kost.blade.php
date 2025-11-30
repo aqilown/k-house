@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cari Kost - K.House</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/cari-kost.css') }}">
 </head>
 <body>
@@ -128,7 +129,7 @@
                             </div>
                         </div>
                         <div class="kost-footer">
-                            <a href="#" class="btn-detail">Lihat Selengkapnya</a>
+                            <a href="{{ route('detail-kost', 1) }}" class="btn-detail">Lihat Selengkapnya</a>
                         </div>
                     </div>
                 </div>
