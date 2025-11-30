@@ -32,6 +32,9 @@ Route::get('/admin/dashboard', function () {
     return view('layouts.admin_dashboard');
 });
 
+// Admin Kamar
+Route::view('/admin/kamar', 'layouts.admin.kamar_admin_dashboard');
+
 // Detai Kost statis
 Route::get('/kost/{id}', function ($id) {
     return view('detail-kost');
