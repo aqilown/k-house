@@ -614,7 +614,7 @@
                 <span>ABOUT US</span>
             </div>
             <h1>Tentang <span>Kami</span></h1>
-            <p>Sewa Apartemen Impian Anda, Ruang Nyaman, Hidup Bahagia. Temukan Apartemen Terbaik di Indonesia Bersama Kami!</p>
+            <p>Sewa Kost Impian Anda, Ruang Nyaman, Hidup Bahagia. Temukan Tempat Terbaik di Indonesia Bersama Kami!</p>
         </div>
     </section>
 
@@ -623,8 +623,8 @@
         <div class="container">
             <div class="mission-header">
                 <span class="section-tag">TUJUAN KAMI</span>
-                <h2>Berikan Layanan & Tempat Apartemen<br>Terbaik Sesuai Impian Pengunjung</h2>
-                <p>Layanan dan Tempat Apartemen Terbaik, Sesuai Impian Anda. Rasakan kenyamanan istimewa di hunian kami.</p>
+                <h2>Berikan Layanan & Tempat Terbaik<br>Sesuai Impian Pengunjung</h2>
+                <p>Layanan dan Tempat Kost Terbaik, Sesuai Impian Anda. Rasakan kenyamanan istimewa di hunian kami.</p>
             </div>
 
             <div class="mission-grid">
@@ -635,7 +635,7 @@
                         <div class="mission-number">01</div>
                         <div class="mission-content">
                             <h3>Menghadirkan Kemewahan Berkualitas Tinggi</h3>
-                            <p>Menyediakan layanan dan tempat apartemen terbaik</p>
+                            <p>Menyediakan layanan dan tempat kost terbaik</p>
                         </div>
                     </div>
 
@@ -688,7 +688,7 @@
                 <div class="step-card">
                     <div class="step-number">02</div>
                     <h3>Pilih Tempat</h3>
-                    <p>Pilih tempat apartemen terbaik sesuai keinginan anda</p>
+                    <p>Pilih tempat kost terbaik sesuai keinginan anda</p>
                 </div>
 
                 <div class="step-card">
@@ -700,7 +700,7 @@
                 <div class="step-card">
                     <div class="step-number">04</div>
                     <h3>Download Bukti</h3>
-                    <p>Kami akan segera kirimkan tiket/sewa apartemen anda</p>
+                    <p>Kami akan segera kirimkan tiket/sewa kost anda</p>
                 </div>
             </div>
         </div>
