@@ -39,3 +39,8 @@ Route::view('/admin/kamar', 'layouts.admin.kamar_admin_dashboard');
 Route::get('/kost/{id}', function ($id) {
     return view('detail-kost');
 })->name('detail-kost');
+
+// Profile statis
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');

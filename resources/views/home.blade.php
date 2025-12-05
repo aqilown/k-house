@@ -65,7 +65,7 @@
             </div>
             <div class="stat-item">
                 <h3>12K+</h3>
-                <p>Customer anda</p>
+                <p>Customer</p>
             </div>
             <div class="stat-item">
                 <h3>02th+</h3>
@@ -123,70 +123,19 @@
                     <div class="icon"><i class="fas fa-home"></i></div>
                     <h3>Kost Terbaik</h3>
                     <p>Memberikan kost kost terbaik di seluruh Indonesia</p>
-                    <a href="#">LIHAT SELENGKAPNYA →</a>
+                    <a href="{{ route('cari-kost') }}">LIHAT SELENGKAPNYA →</a>
                 </div>
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-building"></i></div>
                     <h3>Ruangan Modern</h3>
                     <p>Memberikan kamar yang modern dan dengan dengan yang mudah</p>
-                    <a href="#">LIHAT SELENGKAPNYA →</a>
+                    <a href="{{ route('cari-kost') }}">LIHAT SELENGKAPNYA →</a>
                 </div>
                 <div class="service-card">
                     <div class="icon"><i class="fas fa-wifi"></i></div>
                     <h3>Fasilitas Lengkap</h3>
                     <p>Menyediakan semua fasilitas yang dapat membantu anda</p>
-                    <a href="#">LIHAT SELENGKAPNYA →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <div>
-                    <p class="section-tag">APA YANG MEREKA KATAKAN</p>
-                    <h2 class="section-title">Testimoni Pengunjung Kami</h2>
-                </div>
-                <a href="#" class="see-all">SEE ALL REVIEWS →</a>
-            </div>
-            
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Suka banget sama layanan disini, tempatnya bagus dan mudah di akses"</p>
-                    <div class="testimonial-author">
-                        <img src="https://via.placeholder.com/50" alt="Author">
-                        <div class="testimonial-author-info">
-                            <h4>Mr. Aqilla Umara</h4>
-                            <p>CEO of GOOGLE</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Senang sekali dapat menemukan kost disini, pokonya the best banget pokok nya"</p>
-                    <div class="testimonial-author">
-                        <img src="https://via.placeholder.com/50" alt="Author">
-                        <div class="testimonial-author-info">
-                            <h4>Mr. Mardiyanto Yuste</h4>
-                            <p>CEO of Apple</p>
-                        </div>
-                    </div>
+                    <a href="{{ route('cari-kost') }}">LIHAT SELENGKAPNYA →</a>
                 </div>
             </div>
         </div>
@@ -197,22 +146,15 @@
         <div class="container">
             <div class="footer-about">
                 <h3><img src="logo-khouse.png" alt="Logo" style="width: 40px; vertical-align: middle; margin-right: 10px;">K.HOUSE</h3>
-                <p>Aplikasi inovatif penggelolaan dari Kost di Indonesia.</p>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
+                <p>Aplikasi inovatif penggelolaan Kost di Indonesia.</p>
             </div>
             
-            <div class="footer-links">
+             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Check in Check out</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('about') }}">About Us</a></li>
+                    <li><a href="{{ route('cari-kost') }}">Cari Kost</a></li>
                 </ul>
             </div>
             

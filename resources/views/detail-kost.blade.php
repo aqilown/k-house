@@ -252,6 +252,130 @@
         </div>
     </div>
 
+    <!-- Reviews Section -->
+            <div class="reviews-section">
+                <div class="reviews-header">
+                    <h2>Review Pengunjung</h2>
+                    <button class="btn-write-review">Tulis Review</button>
+                </div>
+
+                <div class="reviews-stats">
+                    <div class="rating-summary">
+                        <div class="rating-score-large">4.3</div>
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="total-reviews">Berdasarkan 20+ reviews</p>
+                    </div>
+
+                    <div class="rating-breakdown">
+                        <div class="rating-bar-item">
+                            <span>5 <i class="fas fa-star"></i></span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 70%"></div>
+                            </div>
+                            <span class="rating-count">14</span>
+                        </div>
+                        <div class="rating-bar-item">
+                            <span>4 <i class="fas fa-star"></i></span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 20%"></div>
+                            </div>
+                            <span class="rating-count">4</span>
+                        </div>
+                        <div class="rating-bar-item">
+                            <span>3 <i class="fas fa-star"></i></span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 5%"></div>
+                            </div>
+                            <span class="rating-count">1</span>
+                        </div>
+                        <div class="rating-bar-item">
+                            <span>2 <i class="fas fa-star"></i></span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 5%"></div>
+                            </div>
+                            <span class="rating-count">1</span>
+                        </div>
+                        <div class="rating-bar-item">
+                            <span>1 <i class="fas fa-star"></i></span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <span class="rating-count">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reviews-list">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">A</div>
+                                <div>
+                                    <h4>Andi Pratama</h4>
+                                    <p class="review-date">2 minggu yang lalu</p>
+                                </div>
+                            </div>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="review-text">Kost yang sangat nyaman dan bersih. Lokasi strategis dekat dengan kampus. Pemilik kost ramah dan responsif. Fasilitas lengkap sesuai deskripsi. Sangat recommend!</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">B</div>
+                                <div>
+                                    <h4>Budi Santoso</h4>
+                                    <p class="review-date">1 bulan yang lalu</p>
+                                </div>
+                            </div>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="review-text">Kamar luas dan terang. WiFi cepat cocok untuk WFH. Hanya saja kadang air panas agak lama keluar. Overall worth it untuk harganya.</p>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-info">
+                                <div class="reviewer-avatar">C</div>
+                                <div>
+                                    <h4>Citra Dewi</h4>
+                                    <p class="review-date">1 bulan yang lalu</p>
+                                </div>
+                            </div>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="review-text">Pelayanan excellent! Kamar bersih dan wangi. AC dingin, kasur empuk. Dapur bersama juga terawat. Puas banget tinggal disini.</p>
+                    </div>
+                </div>
+
+                <button class="btn-load-more">Muat Lebih Banyak Review</button>
+            </div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -267,12 +391,12 @@
                 </div>
             </div>
             
-            <div class="footer-links">
+             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Layanan</a></li>
+                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('about') }}">About Us</a></li>
+                    <li><a href="{{ route('cari-kost') }}">Cari Kost</a></li>
                 </ul>
             </div>
             
@@ -288,7 +412,8 @@
             <p>COPYRIGHT K.HOUSE®</p>
         </div>
     </footer>
-    <script>
+    
+<script>
     function decreaseDuration() {
         let duration = document.getElementById('duration');
         let value = parseInt(duration.value);
