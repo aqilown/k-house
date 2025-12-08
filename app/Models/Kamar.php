@@ -9,48 +9,21 @@ class Kamar extends Model
 {
     use HasFactory;
 
-    protected $table = 'kamars';
-    protected $primaryKey = 'id_kamar';
+    protected $table = 'kamar';
 
     protected $fillable = [
-        'id_kost',
-        'tipe_kamar',
-        'jumlah_kamar',
-        'harga_kamar',
-        'status_kamar',
-        'deskripsi_kamar',
-        'foto_kamar',
+        'kost_id', 'tipe_kamar', 'harga_bulanan', 
+        'ukuran', 'jumlah_tersedia', 'deskripsi', 'foto_kamar'
     ];
 
-    protected $casts = [
-        'harga_kamar' => 'decimal:2',
-        'jumlah_kamar' => 'integer',
-    ];
-
-    // Relationships
+    // Relationship
     public function kost()
     {
-        return $this->belongsTo(Kost::class, 'id_kost', 'id_kost');
+        return $this->belongsTo(Kost::class);
     }
 
-    public function bookings()
+    public function booking()
     {
-        return $this->hasMany(Booking::class, 'id_kamar', 'id_kamar');
-    }
-
-    // Helper methods
-    public function isAvailable()
-    {
-        return $this->status_kamar === 'tersedia';
-    }
-
-    public function isFull()
-    {
-        return $this->status_kamar === 'terisi';
-    }
-
-    public function getFormattedPrice()
-    {
-        return 'Rp ' . number_format($this->harga_kamar, 0, ',', '.');
+        return $this->hasMany(Booking::class);
     }
 }
