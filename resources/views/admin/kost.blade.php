@@ -13,7 +13,6 @@
         <aside class="sidebar">
             <div class="logo">
                 <img src="{{ asset('logo-khouse.png') }}" alt="K.House">
-                <h2>K.HOUSE ADMIN</h2>
             </div>
 
             <nav class="menu">
