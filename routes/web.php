@@ -30,21 +30,31 @@ Route::get('/cari-kost', function () {
 // Admin Dashboard statis
 Route::get('/admin/dashboard', function () {
     return view('layouts.admin_dashboard');
-});
-
+})->name('admin.dashboard');
 
 // Detail Kost statis
 Route::get('/kost/{id}', function ($id) {
     return view('detail-kost');
 })->name('detail-kost');
 
-//ADMIN KAMAR
+
+// =============  ROUTE VERSI KAMU (HEAD)  =============
+
+// ADMIN KAMAR
 Route::get('/admin/kamar', function () {
-    return view('layouts.kamar_admin_dashboard'); 
+    return view('layouts.kamar_admin_dashboard');
 })->name('admin.kamar');
 
-// Halaman Penghuni ADMIN
+// ADMIN PENGHUNI
 Route::get('/admin/penghuni', function () {
     return view('layouts.penghuni_admin_dashboard');
-});
+})->name('admin.penghuni');
+
+
+// =============  ROUTE DARI REMOTE (INCOMING)  =============
+
+// Profile statis
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');
 

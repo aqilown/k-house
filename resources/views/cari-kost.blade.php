@@ -48,7 +48,7 @@
                 <i class="fas fa-chevron-right" style="font-size: 10px;"></i>
                 <span>CARI KOST</span>
             </div>
-            <h1>Cari Kost atau Apartemen</h1>
+            <h1>Cari Kost</h1>
             <p>Segera cari tempat yang ingin anda inap, atur jadwal checkin dan checkout</p>
 
             <!-- Search Box -->
@@ -84,14 +84,14 @@
         <div class="container">
             <div class="results-header">
                 <div class="results-count">
-                    Menampilkan <strong>3</strong> kost tersedia
+                    Menampilkan <strong id="kost-count">3</strong> kost tersedia
                 </div>
             </div>
 
             <!-- Kost Grid -->
             <div class="kost-grid">
                 <!-- Kost Card 1 -->
-                <div class="kost-card">
+                <div class="kost-card" data-kategori="putra">
                     <div class="kost-image">
                         <img src="{{ asset('kost-image1.png') }}" alt="Kost 1">
                     </div>
@@ -111,7 +111,7 @@
                             <div class="kost-badges">
                                 <span class="badge">Unit Laundry</span>
                                 <span class="badge">Perlengkapan Dapur</span>
-                                <span class="badge">Putra</span>
+                                <span class="badge badge-kategori">Putra</span>
                             </div>
                         </div>
                         <div class="kost-rooms">
@@ -135,7 +135,7 @@
                 </div>
 
                 <!-- Kost Card 2 -->
-                <div class="kost-card">
+                <div class="kost-card" data-kategori="putri">
                     <div class="kost-image">
                         <img src="{{ asset('kost-image2.png') }}" alt="Kost 2">
                     </div>
@@ -155,7 +155,7 @@
                             <div class="kost-badges">
                                 <span class="badge">Ruangan luas</span>
                                 <span class="badge">Ruangan ber AC</span>
-                                <span class="badge">Putri</span>
+                                <span class="badge badge-kategori">Putri</span>
                             </div>
                         </div>
                         <div class="kost-rooms">
@@ -165,13 +165,13 @@
                             </div>
                         </div>
                         <div class="kost-footer">
-                            <a href="#" class="btn-detail">Lihat Selengkapnya</a>
+                            <a href="{{ route('detail-kost', 2) }}" class="btn-detail">Lihat Selengkapnya</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Kost Card 3 -->
-                <div class="kost-card">
+                <div class="kost-card" data-kategori="campur">
                     <div class="kost-image">
                         <img src="{{ asset('kost-image3.png') }}" alt="Kost 3">
                     </div>
@@ -193,7 +193,7 @@
                                 <span class="badge">Perlengkapan Dapur</span>
                                 <span class="badge">Ruangan Fitness</span>
                                 <span class="badge">Ruangan ber AC</span>
-                                <span class="badge">Campur</span>
+                                <span class="badge badge-kategori">Campur</span>
                             </div>
                         </div>
                         <div class="kost-rooms">
@@ -211,7 +211,7 @@
                             </div>
                         </div>
                         <div class="kost-footer">
-                            <a href="#" class="btn-detail">Lihat Selengkapnya</a>
+                            <a href="{{ route('detail-kost', 3) }}" class="btn-detail">Lihat Selengkapnya</a>
                         </div>
                     </div>
                 </div>
@@ -232,21 +232,15 @@
         <div class="container">
             <div class="footer-about">
                 <h3><img src="{{ asset('logo-khouse.png') }}" alt="Logo" style="width: 40px; vertical-align: middle; margin-right: 10px;">K.HOUSE</h3>
-                <p>Aplikasi inovatif penggelolaan dari Kost di Indonesia.</p>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
+                <p>Aplikasi inovatif penggelolaan Kost di Indonesia.</p>
             </div>
             
-            <div class="footer-links">
+           <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Cari Kost</a></li>
+                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('about') }}">About Us</a></li>
+                    <li><a href="{{ route('cari-kost') }}">Cari Kost</a></li>
                 </ul>
             </div>
             
@@ -262,5 +256,33 @@
             <p>COPYRIGHT © K.HOUSE</p>
         </div>
     </footer>
+    <script>
+        // Fungsi untuk tombol Cari
+        document.querySelector('.btn-search').addEventListener('click', function() {
+            const selectElement = document.querySelector('.search-field select');
+            const selectedKategori = selectElement.value;
+            
+            filterKost(selectedKategori === '' ? 'semua' : selectedKategori);
+        });
+
+        // Fungsi filter kost
+        function filterKost(kategori) {
+            const kostCards = document.querySelectorAll('.kost-card');
+            let visibleCount = 0;
+
+            kostCards.forEach(card => {
+                const cardKategori = card.getAttribute('data-kategori');
+                
+                if (kategori === 'semua' || cardKategori === kategori) {
+                    card.style.display = 'grid';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('kost-count').textContent = visibleCount;
+        }
+    </script>
 </body>
 </html>

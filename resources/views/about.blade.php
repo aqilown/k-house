@@ -146,22 +146,15 @@
         <div class="container">
             <div class="footer-about">
                 <h3><img src="{{ asset('logo-khouse.png') }}" alt="Logo" style="width: 40px; vertical-align: middle; margin-right: 10px;">K.HOUSE</h3>
-                <p>Aplikasi inovatif penggelolaan dari Kost di Indonesia.</p>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
+                <p>Aplikasi inovatif penggelolaan Kost di Indonesia.</p>
             </div>
             
-            <div class="footer-links">
+             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Check in Check out</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('about') }}">About Us</a></li>
+                    <li><a href="{{ route('cari-kost') }}">Cari Kost</a></li>
                 </ul>
             </div>
             
