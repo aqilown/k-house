@@ -32,10 +32,19 @@ Route::get('/admin/dashboard', function () {
     return view('layouts.admin_dashboard');
 });
 
-// Admin Kamar
-Route::view('/admin/kamar', 'layouts.admin.kamar_admin_dashboard');
 
-// Detai Kost statis
+// Detail Kost statis
 Route::get('/kost/{id}', function ($id) {
     return view('detail-kost');
 })->name('detail-kost');
+
+//ADMIN KAMAR
+Route::get('/admin/kamar', function () {
+    return view('layouts.kamar_admin_dashboard'); 
+})->name('admin.kamar');
+
+// Halaman Penghuni ADMIN
+Route::get('/admin/penghuni', function () {
+    return view('layouts.penghuni_admin_dashboard');
+});
+
