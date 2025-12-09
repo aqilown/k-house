@@ -516,3 +516,39 @@ footer .container {
         grid-template-columns: 1fr;
     }
 }
+
+/* Badge Overlay on Image */
+        .badge-overlay {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .badge-putra {
+            background: #2196f3;
+        }
+
+        .badge-putri {
+            background: #e91e63;
+        }
+
+        .badge-campur {
+            background: #9c27b0;
+        }
+
+        .pagination .disabled {
+            display: inline-block;
+            padding: 10px 15px;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .kost-image {
+            position: relative;
+        }

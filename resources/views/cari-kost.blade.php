@@ -35,8 +35,54 @@
                 <a href="{{ route('home') }}">HOME</a>
                 <a href="{{ route('about') }}">ABOUT US</a>
                 <a href="{{ route('cari-kost') }}">CARI KOST</a>
-                <a href="{{ route('login') }}" class="btn-get-started">GET STARTED</a>
+                
+                @auth
+                    <!-- Jika sudah login -->
+                    <div class="user-dropdown" style="position: relative;">
+                        <a href="#" class="btn-get-started" style="display: flex; align-items: center; gap: 8px;">
+                            <img src="{{ asset(auth()->user()->foto_profil ?? 'default-avatar.png') }}" 
+                                style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover;">
+                            {{ auth()->user()->nama }}
+                            <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+                        </a>
+                        <div class="dropdown-menu" style="display: none; position: absolute; top: 100%; right: 0; background: white; box-shadow: 0 5px 20px rgba(0,0,0,0.15); border-radius: 8px; min-width: 200px; margin-top: 10px;">
+                            <a href="{{ route('profile') }}" style="display: block; padding: 12px 20px; color: #333; text-decoration: none; border-bottom: 1px solid #f0f0f0;">
+                                <i class="fas fa-user"></i> Profil Saya
+                            </a>
+                            <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
+                                @csrf
+                                <button type="submit" style="width: 100%; text-align: left; padding: 12px 20px; border: none; background: none; color: #dc3545; cursor: pointer; font-size: 14px;">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <!-- Jika belum login -->
+                    <a href="{{ route('login') }}" class="btn-get-started">GET STARTED</a>
+                @endauth
             </div>
+
+            <script>
+            // Dropdown toggle
+            document.addEventListener('DOMContentLoaded', function() {
+                const dropdown = document.querySelector('.user-dropdown');
+                if(dropdown) {
+                    dropdown.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const menu = this.querySelector('.dropdown-menu');
+                        menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+                    });
+
+                    // Close dropdown when click outside
+                    document.addEventListener('click', function(e) {
+                        if (!dropdown.contains(e.target)) {
+                            dropdown.querySelector('.dropdown-menu').style.display = 'none';
+                        }
+                    });
+                }
+            });
+            </script>
         </div>
     </nav>
 
@@ -51,13 +97,13 @@
             <h1>Cari Kost</h1>
             <p>Segera cari tempat yang ingin anda inap, atur jadwal checkin dan checkout</p>
 
-            <!-- Search Box -->
-            <div class="search-box">
+            <!-- Search Box - AKTIF -->
+            <form action="{{ route('cari-kost') }}" method="GET" class="search-box">
                 <div class="search-field">
                     <i class="fas fa-map-marker-alt"></i>
                     <div class="search-field-content">
                         <div class="search-field-label">Pilih kota yang dituju</div>
-                        <input type="text" placeholder="Cari lokasi kost...">
+                        <input type="text" name="lokasi" placeholder="Cari lokasi kost..." value="{{ request('lokasi') }}">
                     </div>
                 </div>
 
@@ -65,17 +111,17 @@
                     <i class="fas fa-home"></i>
                     <div class="search-field-content">
                         <div class="search-field-label">Jenis Kost</div>
-                        <select style="border: none; outline: none; font-size: 14px; width: 100%; color: #333; font-weight: 500; background: transparent; cursor: pointer;">
+                        <select name="kategori" style="border: none; outline: none; font-size: 14px; width: 100%; color: #333; font-weight: 500; background: transparent; cursor: pointer;">
                             <option value="">Semua</option>
-                            <option value="putra">Putra</option>
-                            <option value="putri">Putri</option>
-                            <option value="campur">Campur</option>
+                            <option value="putra" {{ request('kategori') == 'putra' ? 'selected' : '' }}>Putra</option>
+                            <option value="putri" {{ request('kategori') == 'putri' ? 'selected' : '' }}>Putri</option>
+                            <option value="campur" {{ request('kategori') == 'campur' ? 'selected' : '' }}>Campur</option>
                         </select>
                     </div>
                 </div>
 
-                <button class="btn-search">Cari</button>
-            </div>
+                <button type="submit" class="btn-search">Cari</button>
+            </form>
         </div>
     </section>
 
@@ -84,146 +130,140 @@
         <div class="container">
             <div class="results-header">
                 <div class="results-count">
-                    Menampilkan <strong id="kost-count">3</strong> kost tersedia
+                    Menampilkan <strong>{{ $kosts->total() }}</strong> kost tersedia
+                    @if(request('kategori'))
+                        <span style="color: #666;"> ({{ ucfirst(request('kategori')) }})</span>
+                    @endif
+                    @if(request('lokasi'))
+                        <span style="color: #666;"> di "{{ request('lokasi') }}"</span>
+                    @endif
                 </div>
+                @if(request('kategori') || request('lokasi'))
+                <a href="{{ route('cari-kost') }}" style="color: #3d5a4a; text-decoration: none; font-size: 14px;">
+                    <i class="fas fa-times"></i> Reset Filter
+                </a>
+                @endif
             </div>
 
-            <!-- Kost Grid -->
+            <!-- Kost Grid - DINAMIS -->
             <div class="kost-grid">
-                <!-- Kost Card 1 -->
-                <div class="kost-card" data-kategori="putra">
+                @forelse($kosts as $kost)
+                <div class="kost-card" data-kategori="{{ $kost->kategori }}">
                     <div class="kost-image">
-                        <img src="{{ asset('kost-image1.png') }}" alt="Kost 1">
+                        @if($kost->foto_utama)
+                            <img src="{{ asset($kost->foto_utama) }}" alt="{{ $kost->nama_kost }}">
+                        @else
+                            <img src="{{ asset('kost-image1.png') }}" alt="{{ $kost->nama_kost }}">
+                        @endif
+                        <span class="badge-overlay badge-{{ $kost->kategori }}">{{ ucfirst($kost->kategori) }}</span>
                     </div>
                     <div class="kost-content">
                         <div class="kost-header">
                             <div class="kost-rating">
+                                @if($kost->rating > 0)
                                 <div class="stars">
                                     <i class="fas fa-star"></i>
-                                    <span style="color: #333; font-weight: 600;">4.3/5</span>
+                                    <span style="color: #333; font-weight: 600;">{{ number_format($kost->rating, 1) }}/5</span>
                                 </div>
-                                <span class="rating-text">(199+ reviews)</span>
+                                <span class="rating-text">({{ $kost->jumlah_review }} reviews)</span>
+                                @else
+                                <div class="stars">
+                                    <i class="fas fa-star" style="color: #ddd;"></i>
+                                    <span style="color: #999; font-weight: 600;">Belum ada review</span>
+                                </div>
+                                @endif
                             </div>
-                            <h3 class="kost-title">Kost 1</h3>
+                            <h3 class="kost-title">{{ $kost->nama_kost }}</h3>
                             <div class="kost-location">
-                                <span>Lowokwaru, Malang</span>
+                                <i class="fas fa-map-marker-alt" style="color: #3d5a4a; margin-right: 5px;"></i>
+                                <span>{{ $kost->kecamatan }}, {{ $kost->kota }}</span>
                             </div>
+                            
+                            @if($kost->fasilitas->count() > 0)
                             <div class="kost-badges">
-                                <span class="badge">Unit Laundry</span>
-                                <span class="badge">Perlengkapan Dapur</span>
-                                <span class="badge badge-kategori">Putra</span>
+                                @foreach($kost->fasilitas->take(4) as $fasilitas)
+                                <span class="badge">{{ $fasilitas->nama_fasilitas }}</span>
+                                @endforeach
+                                @if($kost->fasilitas->count() > 4)
+                                <span class="badge" style="background: #e9ecef; color: #666;">+{{ $kost->fasilitas->count() - 4 }} lainnya</span>
+                                @endif
                             </div>
+                            @endif
                         </div>
-                        <div class="kost-rooms">
-                            <div class="room-item">
-                                <span class="room-type">Kamar Mandi Dalam</span>
-                                <span class="room-price">Mulai Rp 1000K</span>
-                            </div>
-                            <div class="room-item">
-                                <span class="room-type">Dapur Dalam</span>
-                                <span class="room-price">Mulai Rp 1200K</span>
-                            </div>
-                            <div class="room-item">
-                                <span class="room-type">Dapur dan Kamar Mandi Dalam</span>
-                                <span class="room-price">Mulai Rp 1500K</span>
-                            </div>
-                        </div>
-                        <div class="kost-footer">
-                            <a href="{{ route('detail-kost', 1) }}" class="btn-detail">Lihat Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Kost Card 2 -->
-                <div class="kost-card" data-kategori="putri">
-                    <div class="kost-image">
-                        <img src="{{ asset('kost-image2.png') }}" alt="Kost 2">
-                    </div>
-                    <div class="kost-content">
-                        <div class="kost-header">
-                            <div class="kost-rating">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <span style="color: #333; font-weight: 600;">3.8/5</span>
-                                </div>
-                                <span class="rating-text">(239 reviews)</span>
-                            </div>
-                            <h3 class="kost-title">Kost 2</h3>
-                            <div class="kost-location">
-                                <span>Singosari, Malang</span>
-                            </div>
-                            <div class="kost-badges">
-                                <span class="badge">Ruangan luas</span>
-                                <span class="badge">Ruangan ber AC</span>
-                                <span class="badge badge-kategori">Putri</span>
-                            </div>
-                        </div>
+                        @if($kost->kamar->count() > 0)
                         <div class="kost-rooms">
+                            @foreach($kost->kamar->take(3) as $kamar)
                             <div class="room-item">
-                                <span class="room-type">Room 1</span>
-                                <span class="room-price">Mulai Rp 800K</span>
+                                <span class="room-type">{{ $kamar->tipe_kamar }}</span>
+                                <span class="room-price">Rp {{ number_format($kamar->harga_bulanan, 0, ',', '.') }}</span>
                             </div>
+                            @endforeach
+                            @if($kost->kamar->count() > 3)
+                            <div class="room-item" style="border: none; padding-top: 5px;">
+                                <span style="color: #666; font-size: 13px;">+{{ $kost->kamar->count() - 3 }} tipe kamar lainnya</span>
+                            </div>
+                            @endif
                         </div>
-                        <div class="kost-footer">
-                            <a href="{{ route('detail-kost', 2) }}" class="btn-detail">Lihat Selengkapnya</a>
+                        @else
+                        <div style="padding: 15px; text-align: center; color: #999; font-size: 14px;">
+                            Kamar belum tersedia
                         </div>
-                    </div>
-                </div>
+                        @endif
 
-                <!-- Kost Card 3 -->
-                <div class="kost-card" data-kategori="campur">
-                    <div class="kost-image">
-                        <img src="{{ asset('kost-image3.png') }}" alt="Kost 3">
-                    </div>
-                    <div class="kost-content">
-                        <div class="kost-header">
-                            <div class="kost-rating">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <span style="color: #333; font-weight: 600;">New</span>
-                                </div>
-                                <span class="rating-text">to Spotter</span>
-                            </div>
-                            <h3 class="kost-title">Kost 3</h3>
-                            <div class="kost-location">
-                                <span>Araya, Malang</span>
-                            </div>
-                            <div class="kost-badges">
-                                <span class="badge">Unit Laundry</span>
-                                <span class="badge">Perlengkapan Dapur</span>
-                                <span class="badge">Ruangan Fitness</span>
-                                <span class="badge">Ruangan ber AC</span>
-                                <span class="badge badge-kategori">Campur</span>
-                            </div>
-                        </div>
-                        <div class="kost-rooms">
-                            <div class="room-item">
-                                <span class="room-type">Mezzanine</span>
-                                <span class="room-price">Mulai Rp 2000K</span>
-                            </div>
-                            <div class="room-item">
-                                <span class="room-type">1 Tempat Tidur</span>
-                                <span class="room-price">Mulai Rp 1500K</span>
-                            </div>
-                            <div class="room-item">
-                                <span class="room-type">2 Tempat Tidur</span>
-                                <span class="room-price">Mulai Rp 2000K</span>
-                            </div>
-                        </div>
                         <div class="kost-footer">
-                            <a href="{{ route('detail-kost', 3) }}" class="btn-detail">Lihat Selengkapnya</a>
+                            <a href="{{ route('detail-kost', $kost->id) }}" class="btn-detail">Lihat Selengkapnya</a>
                         </div>
                     </div>
                 </div>
+                @empty
+                <!-- Empty State -->
+                <div style="grid-column: 1/-1; text-align: center; padding: 80px 20px;">
+                    <i class="fas fa-search" style="font-size: 64px; color: #ddd; margin-bottom: 20px;"></i>
+                    <h3 style="font-size: 24px; color: #666; margin-bottom: 10px;">Kost Tidak Ditemukan</h3>
+                    <p style="color: #999; margin-bottom: 20px;">
+                        @if(request('lokasi') || request('kategori'))
+                            Coba ubah kata kunci atau filter pencarian Anda
+                        @else
+                            Belum ada kost yang tersedia saat ini
+                        @endif
+                    </p>
+                    @if(request('lokasi') || request('kategori'))
+                    <a href="{{ route('cari-kost') }}" style="display: inline-block; background: #3d5a4a; color: white; padding: 10px 30px; border-radius: 8px; text-decoration: none;">
+                        Lihat Semua Kost
+                    </a>
+                    @endif
+                </div>
+                @endforelse
             </div>
 
-            <!-- Pagination -->
+            <!-- Pagination - AKTIF -->
+            @if($kosts->hasPages())
             <div class="pagination">
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">...</a>
-                <a href="#">5</a>
+                {{-- Previous Page Link --}}
+                @if ($kosts->onFirstPage())
+                    <span class="disabled">«</span>
+                @else
+                    <a href="{{ $kosts->previousPageUrl() }}" rel="prev">«</a>
+                @endif
+
+                {{-- Pagination Elements --}}
+                @foreach ($kosts->getUrlRange(1, $kosts->lastPage()) as $page => $url)
+                    @if ($page == $kosts->currentPage())
+                        <a href="#" class="active">{{ $page }}</a>
+                    @else
+                        <a href="{{ $url }}">{{ $page }}</a>
+                    @endif
+                @endforeach
+
+                {{-- Next Page Link --}}
+                @if ($kosts->hasMorePages())
+                    <a href="{{ $kosts->nextPageUrl() }}" rel="next">»</a>
+                @else
+                    <span class="disabled">»</span>
+                @endif
             </div>
+            @endif
         </div>
     </section>
 
@@ -256,33 +296,5 @@
             <p>COPYRIGHT © K.HOUSE</p>
         </div>
     </footer>
-    <script>
-        // Fungsi untuk tombol Cari
-        document.querySelector('.btn-search').addEventListener('click', function() {
-            const selectElement = document.querySelector('.search-field select');
-            const selectedKategori = selectElement.value;
-            
-            filterKost(selectedKategori === '' ? 'semua' : selectedKategori);
-        });
-
-        // Fungsi filter kost
-        function filterKost(kategori) {
-            const kostCards = document.querySelectorAll('.kost-card');
-            let visibleCount = 0;
-
-            kostCards.forEach(card => {
-                const cardKategori = card.getAttribute('data-kategori');
-                
-                if (kategori === 'semua' || cardKategori === kategori) {
-                    card.style.display = 'grid';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            document.getElementById('kost-count').textContent = visibleCount;
-        }
-    </script>
 </body>
 </html>

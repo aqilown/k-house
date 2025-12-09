@@ -35,8 +35,54 @@
                 <a href="{{ route('home') }}">HOME</a>
                 <a href="{{ route('about') }}">ABOUT US</a>
                 <a href="{{ route('cari-kost') }}">CARI KOST</a>
-                <a href="{{ route('login') }}" class="btn-get-started">GET STARTED</a>
+                
+                @auth
+                    <!-- Jika sudah login -->
+                    <div class="user-dropdown" style="position: relative;">
+                        <a href="#" class="btn-get-started" style="display: flex; align-items: center; gap: 8px;">
+                            <img src="{{ asset(auth()->user()->foto_profil ?? 'default-avatar.png') }}" 
+                                style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover;">
+                            {{ auth()->user()->nama }}
+                            <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
+                        </a>
+                        <div class="dropdown-menu" style="display: none; position: absolute; top: 100%; right: 0; background: white; box-shadow: 0 5px 20px rgba(0,0,0,0.15); border-radius: 8px; min-width: 200px; margin-top: 10px;">
+                            <a href="{{ route('profile') }}" style="display: block; padding: 12px 20px; color: #333; text-decoration: none; border-bottom: 1px solid #f0f0f0;">
+                                <i class="fas fa-user"></i> Profil Saya
+                            </a>
+                            <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
+                                @csrf
+                                <button type="submit" style="width: 100%; text-align: left; padding: 12px 20px; border: none; background: none; color: #dc3545; cursor: pointer; font-size: 14px;">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <!-- Jika belum login -->
+                    <a href="{{ route('login') }}" class="btn-get-started">GET STARTED</a>
+                @endauth
             </div>
+
+            <script>
+            // Dropdown toggle
+            document.addEventListener('DOMContentLoaded', function() {
+                const dropdown = document.querySelector('.user-dropdown');
+                if(dropdown) {
+                    dropdown.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const menu = this.querySelector('.dropdown-menu');
+                        menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+                    });
+
+                    // Close dropdown when click outside
+                    document.addEventListener('click', function(e) {
+                        if (!dropdown.contains(e.target)) {
+                            dropdown.querySelector('.dropdown-menu').style.display = 'none';
+                        }
+                    });
+                }
+            });
+            </script>
         </div>
     </nav>
 
@@ -46,8 +92,13 @@
             <h1>Ayo, <span class="highlight">Cari</span> Kost<br>Impian <span class="highlight">Anda</span> Disini..</h1>
             <p>Kost impian Anda hanya sekali klik jauhnya. Temukan kenyamanan dalam Semua Kost di Indonesia.</p>
             <div class="hero-buttons">
-                <a href="{{ route('cari-kost') }}" class="btn-primary">LIHAT SELENGKAPNYA</a>
-                <a href="{{ route('cari-kost') }}" class="btn-secondary">COBA SEKARANG</a>
+                @auth
+                    <a href="{{ route('cari-kost') }}" class="btn-primary">LIHAT SELENGKAPNYA</a>
+                    <a href="{{ route('cari-kost') }}" class="btn-secondary">COBA SEKARANG</a>
+                @else
+                    <a href="{{ route('cari-kost') }}" class="btn-primary">LIHAT SELENGKAPNYA</a>
+                    <a href="{{ route('login') }}" class="btn-secondary">COBA SEKARANG</a>
+                @endauth
             </div>
         </div>
     </section>
@@ -262,46 +313,5 @@
             <p>COPYRIGHT © K.HOUSE</p>
         </div>
     </footer>
-
-    <style>
-        .kost-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .kost-item a:hover {
-            background: #3d5a4a;
-        }
-
-        .image-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: white;
-            padding: 15px;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-
-        .featured-image:hover .image-overlay {
-            transform: translateY(0);
-        }
-
-        .featured-image a {
-            display: block;
-            height: 100%;
-            position: relative;
-        }
-
-        .featured-image img {
-            transition: transform 0.3s;
-        }
-
-        .featured-image:hover img {
-            transform: scale(1.1);
-        }
-    </style>
 </body>
 </html>

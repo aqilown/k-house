@@ -9,29 +9,62 @@
 <body>
     <div class="register-container">
         <img src="{{ asset('logo-khouse.png') }}" alt="K.House Logo" class="logo">
+        <h2 style="color: #2d4538; margin-bottom: 10px;">Daftar Akun</h2>
+        <p style="color: #666; font-size: 14px; margin-bottom: 30px;">Bergabunglah dengan K.House</p>
         
-        <form>
+        @if(session('error'))
+        <div class="alert alert-error">
+            {{ session('error') }}
+        </div>
+        @endif
+
+        @if ($errors->any())
+        <div class="alert alert-error">
+            <ul style="margin: 0; padding-left: 20px;">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+        <form action="{{ route('register.post') }}" method="POST">
+            @csrf
             <div class="form-group">
-                <label>Nama</label>
-                <input type="text" placeholder="" required>
+                <label>Nama Lengkap</label>
+                <input type="text" name="nama" placeholder="Masukkan nama lengkap" value="{{ old('nama') }}" required>
+                @error('nama')
+                <span class="error-text">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" placeholder="" required>
+                <input type="email" name="email" placeholder="contoh@email.com" value="{{ old('email') }}" required>
+                @error('email')
+                <span class="error-text">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label>No. Telepon (Opsional)</label>
+                <input type="tel" name="no_telepon" placeholder="08xxxxxxxxxx" value="{{ old('no_telepon') }}">
             </div>
 
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" placeholder="" required>
+                <input type="password" name="password" placeholder="Minimal 6 karakter" required>
+                @error('password')
+                <span class="error-text">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label>Konfirmasi Password</label>
-                <input type="password" placeholder="" required>
+                <input type="password" name="password_confirmation" placeholder="Ulangi password" required>
             </div>
 
-            <button type="submit" class="btn-register">Register</button>
+            <button type="submit" class="btn-register">Daftar</button>
         </form>
 
         <div class="login-link">

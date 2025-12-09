@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 
-// Halaman Website K.house
+// Halaman Utama
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -16,20 +16,25 @@ Route::get('/cari-kost', [App\Http\Controllers\HomeController::class, 'cariKost'
 
 Route::get('/kost/{id}', [App\Http\Controllers\HomeController::class, 'detailKost'])->name('detail-kost');
 
-// Autentikasi User
+// Review (harus login)
+Route::post('/review', [App\Http\Controllers\ReviewController::class, 'store'])->name('review.store')->middleware('auth');
+Route::delete('/review/{id}', [App\Http\Controllers\ReviewController::class, 'destroy'])->name('review.delete')->middleware('auth');
+
+// Auth User
 
 Route::get('/login', [AuthController::class, 'showUserLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'userLogin'])->name('login.post');
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+
+Route::post('/logout', [AuthController::class, 'userLogout'])->name('logout')->middleware('auth');
 
 Route::get('/profile', function () {
     return view('profile');
-})->name('profile');
+})->name('profile')->middleware('auth');
 
-// Autentikasi Admin
+// Auth Admin
 
 Route::get('/admin/login', [AuthController::class, 'showAdminLogin'])->name('admin.login');
 Route::post('/admin/login', [AuthController::class, 'adminLogin'])->name('admin.login.post');
