@@ -39,10 +39,13 @@
             </nav>
 
             <div class="sidebar-footer">
-                <a href="#" class="menu-item logout" onclick="event.preventDefault(); if(confirm('Yakin ingin logout?')) window.location.href='{{ route('login') }}'">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
-                </a>
+                <form action="{{ route('admin.logout') }}" method="POST" style="width: 100%;">
+                    @csrf
+                    <button type="submit" class="menu-item logout" style="width: 100%; background: none; border: none; text-align: left; cursor: pointer;">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </div>
         </aside>
 
