@@ -27,10 +27,6 @@ Route::get('/cari-kost', function () {
     return view('cari-kost');
 })->name('cari-kost');
 
-// Admin Dashboard statis
-Route::get('/admin/dashboard', function () {
-    return view('layouts.admin_dashboard');
-})->name('admin.dashboard');
 
 // Detail Kost statis
 Route::get('/kost/{id}', function ($id) {
@@ -38,7 +34,11 @@ Route::get('/kost/{id}', function ($id) {
 })->name('detail-kost');
 
 
-// =============  ROUTE VERSI KAMU (HEAD)  =============
+// =============  ROUTE ADMIN DASHBOARD  =============
+// Admin Dashboard statis
+Route::get('/admin/dashboard', function () {
+    return view('layouts.admin_dashboard');
+})->name('admin.dashboard');
 
 // ADMIN KAMAR
 Route::get('/admin/kamar', function () {
@@ -51,10 +51,8 @@ Route::get('/admin/penghuni', function () {
 })->name('admin.penghuni');
 
 
-// =============  ROUTE DARI REMOTE (INCOMING)  =============
 
 // Profile statis
 Route::get('/profile', function () {
     return view('profile');
 })->name('profile');
-
