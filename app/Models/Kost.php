@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kost extends Model
 {
-    protected $table = 'kost'; // ← Tambahkan ini!
+    protected $table = 'kost';
     
     protected $fillable = [
         'nama_kost', 'kategori', 'alamat', 'kota', 
@@ -18,5 +18,20 @@ class Kost extends Model
     public function kamar()
     {
         return $this->hasMany(Kamar::class);
+    }
+
+    public function fasilitas()
+    {
+        return $this->hasMany(Fasilitas::class);
+    }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function foto()
+    {
+        return $this->hasMany(FotoKost::class);
     }
 }

@@ -4,25 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 
-// halaman website
+// Halaman Website K.house
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/cari-kost', function () {
-    return view('cari-kost');
-})->name('cari-kost');
+Route::get('/cari-kost', [App\Http\Controllers\HomeController::class, 'cariKost'])->name('cari-kost');
 
-Route::get('/kost/{id}', function ($id) {
-    return view('detail-kost');
-})->name('detail-kost');
+Route::get('/kost/{id}', [App\Http\Controllers\HomeController::class, 'detailKost'])->name('detail-kost');
 
-// Autentikasi user
+// Autentikasi User
 
 Route::get('/login', [AuthController::class, 'showUserLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'userLogin'])->name('login.post');
@@ -35,13 +29,13 @@ Route::get('/profile', function () {
     return view('profile');
 })->name('profile');
 
-// Autentikasi admin
+// Autentikasi Admin
 
 Route::get('/admin/login', [AuthController::class, 'showAdminLogin'])->name('admin.login');
 Route::post('/admin/login', [AuthController::class, 'adminLogin'])->name('admin.login.post');
 Route::post('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
 
-// Admin Dashboard Routes
+// Admin Dashboard
 
 Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function () {
     

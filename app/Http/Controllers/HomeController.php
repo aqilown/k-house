@@ -2,44 +2,66 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kost;
 use Illuminate\Http\Request;
+use App\Models\Kost;
+use App\Models\Kamar;
 
 class HomeController extends Controller
 {
-    public function index(Request $request)
+    /**
+     * Halaman Home - Tampil kost terbaru
+     */
+    public function index()
     {
-        $query = Kost::with(['kamars', 'reviews', 'fasilitas']);
-
-        // Search
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('nama_kost', 'like', "%{$search}%")
-                  ->orWhere('alamat_kost', 'like', "%{$search}%");
-            });
-        }
-
-        // Filter by jenis
-        if ($request->filled('jenis_kost')) {
-            $query->where('jenis_kost', $request->jenis_kost);
-        }
-
-        // Filter by price range
-        if ($request->filled('min_price')) {
-            $query->whereHas('kamars', function($q) use ($request) {
-                $q->where('harga_kamar', '>=', $request->min_price);
-            });
-        }
-
-        if ($request->filled('max_price')) {
-            $query->whereHas('kamars', function($q) use ($request) {
-                $q->where('harga_kamar', '<=', $request->max_price);
-            });
-        }
-
-        $kosts = $query->paginate(12);
+        // Ambil 6 kost terbaru dengan kamar
+        $kosts = Kost::with(['kamar', 'fasilitas'])
+            ->orderBy('created_at', 'desc')
+            ->take(6)
+            ->get();
 
         return view('home', compact('kosts'));
+    }
+
+    /**
+     * Halaman Cari Kost - Filter & search
+     */
+    public function cariKost(Request $request)
+    {
+        $query = Kost::with(['kamar', 'fasilitas']);
+
+        // Filter berdasarkan kategori
+        if ($request->has('kategori') && $request->kategori != '') {
+            $query->where('kategori', $request->kategori);
+        }
+
+        // Search berdasarkan lokasi
+        if ($request->has('lokasi') && $request->lokasi != '') {
+            $lokasi = $request->lokasi;
+            $query->where(function($q) use ($lokasi) {
+                $q->where('nama_kost', 'like', "%{$lokasi}%")
+                  ->orWhere('kota', 'like', "%{$lokasi}%")
+                  ->orWhere('kecamatan', 'like', "%{$lokasi}%")
+                  ->orWhere('alamat', 'like', "%{$lokasi}%");
+            });
+        }
+
+        $kosts = $query->paginate(9);
+
+        return view('cari-kost', compact('kosts'));
+    }
+
+    /**
+     * Halaman Detail Kost
+     */
+    public function detailKost($id)
+    {
+        $kost = Kost::with(['kamar', 'fasilitas', 'review.user'])
+            ->findOrFail($id);
+
+        // Hitung rata-rata rating dari review
+        $avgRating = $kost->review->avg('rating') ?? 0;
+        $totalReview = $kost->review->count();
+
+        return view('detail-kost', compact('kost', 'avgRating', 'totalReview'));
     }
 }
