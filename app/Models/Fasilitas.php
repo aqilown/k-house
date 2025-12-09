@@ -10,19 +10,13 @@ class Fasilitas extends Model
     use HasFactory;
 
     protected $table = 'fasilitas';
-    protected $primaryKey = 'id_fasilitas';
+    public $timestamps = false;
 
-    protected $fillable = [
-        'id_kost',
-        'nama_fasilitas',
-        'icon',
-        'deskripsi_fasilitas',
-        'foto_fasilitas',
-    ];
+    protected $fillable = ['kost_id', 'nama_fasilitas', 'icon'];
 
-    // Relationships
+    // Relationship
     public function kost()
     {
-        return $this->belongsTo(Kost::class, 'id_kost', 'id_kost');
+        return $this->belongsTo(Kost::class);
     }
 }

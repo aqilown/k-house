@@ -9,34 +9,26 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $table = 'reviews';
-    protected $primaryKey = 'id_review';
+    protected $table = 'review';
 
     protected $fillable = [
-        'id_kost',
-        'id_user',
-        'rating',
-        'komentar',
+        'kost_id', 'user_id', 'booking_id', 
+        'rating', 'komentar'
     ];
 
-    protected $casts = [
-        'rating' => 'integer',
-    ];
-
-    // Relationships
+    // Relationship
     public function kost()
     {
-        return $this->belongsTo(Kost::class, 'id_kost', 'id_kost');
+        return $this->belongsTo(Kost::class);
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user', 'id_user');
+        return $this->belongsTo(User::class);
     }
 
-    // Helper methods
-    public function getStarsArray()
+    public function booking()
     {
-        return range(1, 5);
+        return $this->belongsTo(Booking::class);
     }
 }

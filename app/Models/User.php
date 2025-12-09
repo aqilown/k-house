@@ -4,68 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
-
-    protected $table = 'users';
-    protected $primaryKey = 'id_user';
+    use HasFactory;
 
     protected $fillable = [
-        'nama',
-        'email_user',
-        'password',
-        'role_user',
-        'nomor_handphone',
+        'nama', 'email', 'password', 'no_telepon', 
+        'tanggal_lahir', 'alamat', 'jenis_kelamin', 
+        'pekerjaan', 'foto_profil', 'role'
     ];
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password'];
 
-    protected $casts = [
-        'password' => 'hashed',
-    ];
-
-    // Relationships
-    public function kosts()
+    // Relationship
+    public function booking()
     {
-        return $this->hasMany(Kost::class, 'id_user', 'id_user');
+        return $this->hasMany(Booking::class);
     }
 
-    public function bookings()
+    public function review()
     {
-        return $this->hasMany(Booking::class, 'id_user', 'id_user');
+        return $this->hasMany(Review::class);
     }
-
-    public function reviews()
-    {
-        return $this->hasMany(Review::class, 'id_user', 'id_user');
-    }
-
-    // Helper methods
-    public function isPemilik()
-    {
-        return $this->role_user === 'pemilik';
-    }
-
-    public function isPencari()
-    {
-        return $this->role_user === 'pencari';
-    }
-
-    // Override getAuthPassword untuk custom column
-    public function getAuthPassword()
-    {
-        return $this->password;
-    }
-
-    // Override email field untuk auth
-    public function getEmailForPasswordReset()
-    {
-        return $this->email_user;
-    }
-}   
+}
