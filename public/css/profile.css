@@ -37,11 +37,6 @@ body {
     gap: 30px;
 }
 
-.top-bar .social-links {
-    display: flex;
-    gap: 15px;
-}
-
 .top-bar a {
     color: white;
     text-decoration: none;
@@ -433,56 +428,36 @@ nav .container {
     background: #2d4538;
 }
 
-/* Footer */
+//* Footer */
 footer {
     background: #2d4538;
     color: white;
-    padding: 50px 0 0;
+    padding: 60px 20px 30px;
 }
 
 footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 30px;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 40px;
 }
 
 .footer-about h3 {
     font-size: 24px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .footer-about p {
+    color: rgba(255,255,255,0.8);
+    line-height: 1.8;
     margin-bottom: 20px;
-    opacity: 0.9;
 }
 
-.footer-social {
-    display: flex;
-    gap: 15px;
-}
-
-.footer-social a {
-    width: 35px;
-    height: 35px;
-    background: rgba(255,255,255,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: white;
-    transition: all 0.3s;
-}
-
-.footer-social a:hover {
-    background: #d4a574;
-    transform: translateY(-3px);
-}
-
-.footer-links h4,
-.footer-contact h4 {
-    margin-bottom: 20px;
+.footer-links h4 {
     font-size: 18px;
+    margin-bottom: 20px;
 }
 
 .footer-links ul {
@@ -490,59 +465,59 @@ footer .container {
 }
 
 .footer-links ul li {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
-.footer-links a {
-    color: white;
+.footer-links ul li a {
+    color: rgba(255,255,255,0.8);
     text-decoration: none;
-    opacity: 0.9;
-    transition: all 0.3s;
+    transition: color 0.3s;
 }
 
-.footer-links a:hover {
-    opacity: 1;
+.footer-links ul li a:hover {
     color: #d4a574;
+}
+
+.footer-contact {
+    color: rgba(255,255,255,0.8);
+}
+
+.footer-contact h4 {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 20px;
 }
 
 .footer-contact p {
-    margin-bottom: 10px;
-    opacity: 0.9;
-}
-
-.footer-contact i {
-    margin-right: 10px;
-    color: #d4a574;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding: 20px 0;
     text-align: center;
-    opacity: 0.8;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-    .profile-container {
+    .nav-links {
+        display: none;
+    }
+
+    .stats .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .featured-grid,
+    .testimonial-grid {
         grid-template-columns: 1fr;
     }
 
-    .form-row {
+    .service-cards {
         grid-template-columns: 1fr;
-    }
-
-    .booking-card {
-        grid-template-columns: 1fr;
-    }
-
-    .booking-image {
-        width: 100%;
-        height: 200px;
-    }
-
-    .booking-price {
-        text-align: left;
     }
 
     footer .container {

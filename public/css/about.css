@@ -30,11 +30,6 @@ body {
     gap: 30px;
 }
 
-.top-bar .social-links {
-    display: flex;
-    gap: 15px;
-}
-
 .top-bar a {
     color: white;
     text-decoration: none;
@@ -370,14 +365,8 @@ nav .container {
     font-style: italic;
 }
 
-.quote-icon {
-    font-size: 48px;
-    color: rgba(61, 90, 74, 0.2);
-    margin-bottom: 20px;
-}
-
 .quote-card p {
-    font-size: 16px;
+    font-size: 20px;
     line-height: 1.8;
     color: #666;
     margin: 0;

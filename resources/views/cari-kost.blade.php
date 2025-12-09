@@ -15,12 +15,6 @@
                 <span><i class="fas fa-envelope"></i> k.house@gmail.com</span>
                 <span><i class="fas fa-phone"></i> (+62) 812 3456 7890</span>
             </div>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>
         </div>
     </div>
 

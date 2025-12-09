@@ -15,12 +15,6 @@
                 <span><i class="fas fa-envelope"></i> k.house@gmail.com</span>
                 <span><i class="fas fa-phone"></i> (+62) 812 3456 7890</span>
             </div>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>
         </div>
     </div>
 
@@ -136,16 +130,10 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="mission-card">
+                    <h3 style="font-size: 22px; margin-bottom: 30px;">Visi Kami</h3>
                 <div class="quote-card">
-                    <div class="quote-icon">"</div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
-                    <br>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-                    <br>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <br>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id laborum.</p>
+                    <p>K.house berkomitmen untuk menyediakan hunian kost yang nyaman, aman, dan transparan dengan menghadirkan informasi kamar yang lengkap, proses booking yang cepat, serta dukungan layanan yang responsif sehingga penghuni dapat merasakan pengalaman tinggal yang modern, praktis, dan sesuai kebutuhan hidup urban.</p>
                 </div>
             </div>
         </div>

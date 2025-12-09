@@ -30,11 +30,6 @@ body {
     gap: 30px;
 }
 
-.top-bar .social-links {
-    display: flex;
-    gap: 15px;
-}
-
 .top-bar a {
     color: white;
     text-decoration: none;
