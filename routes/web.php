@@ -34,6 +34,9 @@ Route::get('/profile', function () {
     return view('profile');
 })->name('profile')->middleware('auth');
 
+Route::put('/profile/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+Route::put('/profile/password', [App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.password')->middleware('auth');
+
 // Auth Admin
 
 Route::get('/admin/login', [AuthController::class, 'showAdminLogin'])->name('admin.login');

@@ -804,3 +804,8 @@ footer .container {
         grid-template-columns: 1fr;
     }
 }
+
+.profile-link:hover {
+    background: #e0e9e4 !important;
+    transform: translateY(-2px);
+}
