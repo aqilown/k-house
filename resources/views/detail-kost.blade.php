@@ -316,7 +316,7 @@
             <div class="footer-about">
                 <img src="{{ asset('logo-khouse.png') }}" alt="Logo" class="footer-logo">
                 <h3>K.HOUSE</h3>
-                <p>Aplikasi terbaik layanan penginapan di seluruh Kost di Indonesia</p>
+                <p>Aplikasi inovatif penggelolaan Kost di Indonesia.</p>
             </div>
             
              <div class="footer-links">

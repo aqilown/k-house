@@ -13,7 +13,6 @@
         <aside class="sidebar">
             <div class="logo">
                 <img src="{{ asset('logo-khouse.png') }}" alt="K.House">
-                <h2>K.HOUSE ADMIN</h2>
             </div>
 
             <nav class="menu">
@@ -165,20 +164,13 @@
 
                     <div class="form-group">
                         <label>Foto Utama</label>
-                        <div class="upload-area" id="uploadArea">
-                            <div class="upload-placeholder" id="uploadPlaceholder">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <p>Klik untuk upload atau drag & drop</p>
-                                <small>JPG, PNG (Max 2MB)</small>
-                            </div>
-                            <div class="image-preview" id="imagePreview" style="display: none;">
-                                <img src="" alt="Preview" id="previewImg">
-                                <button type="button" class="btn-remove-image" onclick="removeImage()">
-                                    <i class="fas fa-times"></i> Hapus Foto
-                                </button>
-                            </div>
-                            <input type="file" name="foto_utama" id="foto_utama" accept="image/*" style="display: none;">
-                            <input type="hidden" name="remove_foto" id="remove_foto" value="0">
+                        <input type="file" name="foto_utama" id="foto_utama" accept="image/*">
+                        <input type="hidden" name="remove_foto" id="remove_foto" value="0">
+                        <div id="imagePreview" style="margin-top: 10px; display: none;">
+                            <img src="" alt="Preview" id="previewImg" style="max-width: 200px; border-radius: 8px;">
+                            <button type="button" class="btn-remove-image" onclick="removeImage()" style="display: block; margin-top: 10px; background: #dc3545; color: white; padding: 5px 15px; border: none; border-radius: 5px; cursor: pointer;">
+                                <i class="fas fa-times"></i> Hapus Foto
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -192,70 +184,27 @@
     </div>
 
     <script>
-        // Upload Area functionality
-        const uploadArea = document.getElementById('uploadArea');
-        const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+        // Simple file preview
+        const fileInput = document.getElementById('foto_utama');
         const imagePreview = document.getElementById('imagePreview');
         const previewImg = document.getElementById('previewImg');
-        const fileInput = document.getElementById('foto_utama');
         const removeFotoInput = document.getElementById('remove_foto');
-
-        uploadArea.addEventListener('click', function(e) {
-            if (!e.target.closest('.btn-remove-image')) {
-                fileInput.click();
-            }
-        });
-
-        // Drag and drop
-        uploadArea.addEventListener('dragover', function(e) {
-            e.preventDefault();
-            uploadArea.style.borderColor = '#3d5a4a';
-            uploadArea.style.background = '#f0f4f2';
-        });
-
-        uploadArea.addEventListener('dragleave', function(e) {
-            e.preventDefault();
-            uploadArea.style.borderColor = '#ddd';
-            uploadArea.style.background = 'white';
-        });
-
-        uploadArea.addEventListener('drop', function(e) {
-            e.preventDefault();
-            uploadArea.style.borderColor = '#ddd';
-            uploadArea.style.background = 'white';
-            
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                fileInput.files = files;
-                handleFileSelect(files[0]);
-            }
-        });
 
         fileInput.addEventListener('change', function(e) {
             if (this.files && this.files[0]) {
-                handleFileSelect(this.files[0]);
-            }
-        });
-
-        function handleFileSelect(file) {
-            if (file.type.match('image.*')) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     previewImg.src = e.target.result;
-                    uploadPlaceholder.style.display = 'none';
                     imagePreview.style.display = 'block';
                     removeFotoInput.value = '0';
                 }
-                reader.readAsDataURL(file);
-            } else {
-                alert('File harus berupa gambar!');
+                reader.readAsDataURL(e.target.files[0]);
             }
-        }
+        });
 
         function removeImage() {
             fileInput.value = '';
             previewImg.src = '';
-            uploadPlaceholder.style.display = 'flex';
             imagePreview.style.display = 'none';
             removeFotoInput.value = '1';
         }
@@ -274,21 +223,13 @@
                 modal.style.display = 'flex';
             } else {
                 title.textContent = 'Edit Kost';
-                
-                // Show loading
-                const modalBody = document.querySelector('.modal-body');
-                const originalContent = modalBody.innerHTML;
-                modalBody.innerHTML = '<div style="text-align: center; padding: 40px;"><i class="fas fa-spinner fa-spin" style="font-size: 32px; color: #3d5a4a;"></i><p style="margin-top: 15px; color: #666;">Memuat data...</p></div>';
                 modal.style.display = 'flex';
                 
-                // Fetch data kost
+                // Fetch data kost untuk edit
                 fetch(`/admin/kost/${id}`)
                     .then(response => response.json())
                     .then(data => {
-                        // Restore original form
-                        modalBody.innerHTML = originalContent;
-                        
-                        // Populate form dengan data yang ada
+                        // Populate form
                         document.getElementById('kostId').value = data.id;
                         document.getElementById('nama_kost').value = data.nama_kost || '';
                         document.getElementById('kategori').value = data.kategori || '';
@@ -300,27 +241,19 @@
                         
                         // Show existing photo
                         if (data.foto_utama) {
-                            const previewImg = document.getElementById('previewImg');
-                            const uploadPlaceholder = document.getElementById('uploadPlaceholder');
-                            const imagePreview = document.getElementById('imagePreview');
-                            
                             previewImg.src = '/' + data.foto_utama;
-                            uploadPlaceholder.style.display = 'none';
                             imagePreview.style.display = 'block';
-                            document.getElementById('remove_foto').value = '0';
+                            removeFotoInput.value = '0';
                         } else {
                             removeImage();
                         }
                         
-                        // Set form action untuk update
                         form.action = `/admin/kost/${id}`;
                         document.getElementById('formMethod').value = 'PUT';
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        modalBody.innerHTML = originalContent;
-                        alert('Gagal memuat data kost. Silakan coba lagi.');
-                        closeModal();
+                        alert('Gagal memuat data kost');
                     });
             }
         }

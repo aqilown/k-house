@@ -251,13 +251,6 @@
             <div class="footer-about">
                 <h3><img src="{{ asset('logo-khouse.png') }}" alt="Logo" style="width: 40px; vertical-align: middle; margin-right: 10px;">K.HOUSE</h3>
                 <p>Aplikasi inovatif penggelolaan Kost di Indonesia.</p>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
             
             <div class="footer-links">
                 <h4>Quick Links</h4>
