@@ -19,19 +19,7 @@
                 <a href="{{ route('home') }}">HOME</a>
                 <a href="{{ route('about') }}">ABOUT US</a>
                 <a href="{{ route('cari-kost') }}">CARI KOST</a>
-                
-                @auth
-                    <!-- Jika sudah login - Tampil foto profil -->
-                    <a href="{{ route('profile') }}" class="profile-link" style="display: flex; align-items: center; gap: 10px; padding: 8px 15px; background: #f0f4f2; border-radius: 25px; transition: all 0.3s;">
-                        <img src="{{ asset(auth()->user()->foto_profil ?? 'default-avatar.png') }}" 
-                            alt="Profile" 
-                            style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 2px solid #3d5a4a;">
-                        <span style="font-weight: 600; color: #2d4538;">{{ auth()->user()->nama }}</span>
-                    </a>
-                @else
-                    <!-- Jika belum login -->
-                    <a href="{{ route('login') }}" class="btn-get-started">GET STARTED</a>
-                @endauth
+                <a href="{{ route('login') }}" class="btn-get-started">GET STARTED</a>
             </div>
         </div>
     </nav>
@@ -139,12 +127,24 @@
             </div>
             @endif
 
-            <!-- Location Section - DINAMIS -->
+            <!-- Location Section - DINAMIS dengan Maps -->
             <div class="map-section">
                 <h2>Lokasi</h2>
                 <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.82493!3d-6.208763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2s{{ urlencode($kost->kota) }}%2C%20Indonesia!5e0!3m2!1sen!2sid!4v1234567890" 
-                            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    @php
+                        $fullAddress = $kost->alamat . ', ' . $kost->kecamatan . ', ' . $kost->kota;
+                        $encodedAddress = urlencode($fullAddress);
+                    @endphp
+                    
+                    <!-- Simple Google Maps Embed -->
+                    <iframe 
+                        src="https://maps.google.com/maps?q={{ $encodedAddress }}&output=embed&z=15" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0; border-radius: 12px;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
                 </div>
 
                 <div class="location-info">
@@ -157,6 +157,7 @@
                                 <p>{{ $kost->alamat }}, {{ $kost->kecamatan }}, {{ $kost->kota }}</p>
                             </div>
                         </div>
+
                         @if($kost->peraturan)
                         <div class="detail-item">
                             <i class="fas fa-info-circle"></i>
