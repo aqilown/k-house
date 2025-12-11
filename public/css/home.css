@@ -173,6 +173,12 @@ nav .container {
     color: #3d5a4a;
 }
 
+.profile-link:hover {
+    background: #e0e9e4 !important;
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(61, 90, 74, 0.3);
+}
+
 /* Stats Section */
 .stats {
     background: #2d4538;
@@ -600,9 +606,4 @@ footer .container {
         .featured-image:hover img {
             transform: scale(1.1);
         }
-        
 
-.profile-link:hover {
-    background: #e0e9e4 !important;
-    transform: translateY(-2px);
-}

@@ -31,15 +31,13 @@
                 <a href="{{ route('cari-kost') }}">CARI KOST</a>
                 
                 @auth
-                    <!-- Jika sudah login - Tampil foto profil -->
-                    <a href="{{ route('profile') }}" class="profile-link" style="display: flex; align-items: center; gap: 10px; padding: 8px 15px; background: #f0f4f2; border-radius: 25px; transition: all 0.3s;">
+                    <!-- Foto profil saja, tanpa nama -->
+                    <a href="{{ route('profile') }}" class="profile-link" style="display: flex; align-items: center; padding: 5px; background: #f0f4f2; border-radius: 50%; transition: all 0.3s;" title="{{ auth()->user()->nama }}">
                         <img src="{{ asset(auth()->user()->foto_profil ?? 'default-avatar.png') }}" 
                             alt="Profile" 
-                            style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 2px solid #3d5a4a;">
-                        <span style="font-weight: 600; color: #2d4538;">{{ auth()->user()->nama }}</span>
+                            style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #3d5a4a;">
                     </a>
                 @else
-                    <!-- Jika belum login -->
                     <a href="{{ route('login') }}" class="btn-get-started">GET STARTED</a>
                 @endauth
             </div>

@@ -19,7 +19,17 @@
                 <a href="{{ route('home') }}">HOME</a>
                 <a href="{{ route('about') }}">ABOUT US</a>
                 <a href="{{ route('cari-kost') }}">CARI KOST</a>
-                <a href="{{ route('login') }}" class="btn-get-started">GET STARTED</a>
+                
+                @auth
+                    <!-- Foto profil saja, tanpa nama -->
+                    <a href="{{ route('profile') }}" class="profile-link" style="display: flex; align-items: center; padding: 5px; background: #f0f4f2; border-radius: 50%; transition: all 0.3s;" title="{{ auth()->user()->nama }}">
+                        <img src="{{ asset(auth()->user()->foto_profil ?? 'default-avatar.png') }}" 
+                            alt="Profile" 
+                            style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #3d5a4a;">
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" class="btn-get-started">GET STARTED</a>
+                @endauth
             </div>
         </div>
     </nav>

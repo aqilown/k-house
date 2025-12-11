@@ -22,18 +22,40 @@ class ProfileController extends Controller
             'tanggal_lahir' => 'nullable|date',
             'alamat' => 'nullable|string',
             'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
-            'pekerjaan' => 'nullable|string|max:100'
+            'pekerjaan' => 'nullable|string|max:100',
+            'foto_profil' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ], [
             'nama.required' => 'Nama harus diisi',
             'email.required' => 'Email harus diisi',
             'email.email' => 'Format email tidak valid',
-            'email.unique' => 'Email sudah digunakan'
+            'email.unique' => 'Email sudah digunakan',
+            'foto_profil.image' => 'File harus berupa gambar',
+            'foto_profil.mimes' => 'Format gambar: jpeg, png, jpg',
+            'foto_profil.max' => 'Ukuran gambar maksimal 2MB'
         ]);
 
-        $user->update($request->only([
+        $data = $request->only([
             'nama', 'email', 'no_telepon', 'tanggal_lahir', 
             'alamat', 'jenis_kelamin', 'pekerjaan'
-        ]));
+        ]);
+
+        // Handle upload foto profil
+        if ($request->hasFile('foto_profil')) {
+            // Delete old photo if exists
+            if ($user->foto_profil && $user->foto_profil !== 'default-avatar.png') {
+                if (file_exists(public_path($user->foto_profil))) {
+                    unlink(public_path($user->foto_profil));
+                }
+            }
+
+            // Upload new photo
+            $file = $request->file('foto_profil');
+            $filename = 'profile_' . $user->id . '_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/profiles'), $filename);
+            $data['foto_profil'] = 'uploads/profiles/' . $filename;
+        }
+
+        $user->update($data);
 
         return redirect()->route('profile')->with('success', 'Profil berhasil diupdate!');
     }

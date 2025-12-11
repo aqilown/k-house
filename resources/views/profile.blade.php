@@ -99,9 +99,26 @@
                     <!-- Informasi Profil -->
                     <div class="tab-content active" id="info">
                         <h2>Informasi Profil</h2>
-                        <form action="{{ route('profile.update') }}" method="POST" class="profile-form">
+                        <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" class="profile-form">
                             @csrf
                             @method('PUT')
+                            
+                            <!-- Upload Foto Profil -->
+                            <div class="form-group">
+                                <label>Foto Profil</label>
+                                <div style="display: flex; align-items: center; gap: 20px;">
+                                    <img src="{{ asset(auth()->user()->foto_profil ?? 'default-avatar.png') }}" 
+                                         id="previewProfileImg" 
+                                         style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #3d5a4a;">
+                                    <div>
+                                        <input type="file" name="foto_profil" id="uploadProfilePhoto" accept="image/*" style="display: none;">
+                                        <button type="button" onclick="document.getElementById('uploadProfilePhoto').click()" style="background: #3d5a4a; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 10px; display: block;">
+                                            <i class="fas fa-camera"></i> Pilih Foto
+                                        </button>
+                                        <small style="color: #666; display: block;">JPG, PNG (Max 2MB)</small>
+                                    </div>
+                                </div>
+                            </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
@@ -282,16 +299,50 @@
             });
         });
 
-        // Upload avatar preview
+        // Upload profile photo preview
+        document.getElementById('uploadProfilePhoto').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Validate file type
+                const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+                if (!validTypes.includes(file.type)) {
+                    alert('Format file harus JPG, PNG atau JPEG!');
+                    this.value = '';
+                    return;
+                }
+
+                // Validate file size (2MB)
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('Ukuran file maksimal 2MB!');
+                    this.value = '';
+                    return;
+                }
+
+                // Show preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('previewProfileImg').src = e.target.result;
+                    document.getElementById('avatarImg').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Avatar edit in sidebar
         document.getElementById('uploadAvatar').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     document.getElementById('avatarImg').src = e.target.result;
-                    // TODO: Upload ke server
                 }
                 reader.readAsDataURL(file);
+                
+                // Sync with profile photo input
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                document.getElementById('uploadProfilePhoto').files = dataTransfer.files;
+                document.getElementById('previewProfileImg').src = e.target.result;
             }
         });
 
