@@ -126,7 +126,7 @@
                             <h3>Rp {{ number_format($kamar->harga_bulanan, 0, ',', '.') }}</h3>
                             <p>Per bulan</p>
                             @if($kamar->jumlah_tersedia > 0)
-                            <button class="btn-book" onclick="alert('Fitur booking akan segera hadir!')">Booking Sekarang</button>
+                            <a href="{{ route('payment') }}" class="btn-book">Booking Sekarang</a>
                             @else
                             <button class="btn-book" style="background: #ccc; cursor: not-allowed;" disabled>Tidak Tersedia</button>
                             @endif

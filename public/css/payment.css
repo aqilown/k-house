@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.payment-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* Left Side - Form */
+.payment-form {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.logo h1 {
+    color: #2d5a4a;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    background: #3d7a62;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.form-header h2 {
+    color: #1a1a1a;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #1a1a1a;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.info-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 11px;
+    line-height: 16px;
+    cursor: help;
+    color: #666;
+    margin-left: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #3d7a62;
+    box-shadow: 0 0 0 3px rgba(61, 122, 98, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #999;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.error {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 16px;
+    background: #3d7a62;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background: #2d5a4a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(61, 122, 98, 0.3);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* Right Side - Summary */
+.payment-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.summary-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.summary-card h3 {
+    color: #1a1a1a;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #3d7a62;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-item span {
+    color: #666;
+    font-size: 14px;
+}
+
+.summary-item .value {
+    color: #1a1a1a;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.total-card {
+    background: #3d7a62;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.total-amount span {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.total-amount h2 {
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.invoice-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .payment-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-form {
+        order: 2;
+    }
+
+    .payment-summary {
+        order: 1;
+    }
+}
+
+@media (max-width: 576px) {
+    .payment-form {
+        padding: 25px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .logo h1 {
+        font-size: 24px;
+    }
+
+    .form-header h2 {
+        font-size: 20px;
+    }
+
+    .total-amount h2 {
+        font-size: 28px;
+    }
+}
