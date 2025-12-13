@@ -81,8 +81,34 @@ Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function ()
 
 // Payment routes (untuk user biasa)
 Route::middleware(['auth'])->group(function () {
-    route::get('/payment', [PaymentController::class, 'index'])->name('payment');
+    Route::get('/payment', [PaymentController::class, 'index'])->name('payment')->middleware('auth');
     Route::get('/payment/{order}', [PaymentController::class, 'show'])->name('payment.show');
     Route::post('/payment/process', [PaymentController::class, 'process'])->name('payment.process');
+    Route::get('/payment/success/{order}', [PaymentController::class, 'success'])->name('payment.success');
+});
+
+// Route untuk simpan data booking ke session
+Route::get('/booking/prepare', [PaymentController::class, 'prepareBooking'])
+    ->name('booking.prepare')
+    ->middleware('auth');
+
+// Route payment (tampilkan halaman payment)
+Route::get('/payment', [PaymentController::class, 'index'])
+    ->name('payment')
+    ->middleware('auth');
+
+
+//ORDER
+Route::middleware(['auth'])->group(function () {
+    // Buat order dari room yang dipilih
+    Route::get('/room/{room}/order', [PaymentController::class, 'createFromRoom'])->name('room.order');
+    
+    // Halaman pembayaran
+    Route::get('/payment/{order}', [PaymentController::class, 'show'])->name('payment.show');
+    
+    // Process payment
+    Route::post('/payment/process', [PaymentController::class, 'process'])->name('payment.process');
+    
+    // Success page
     Route::get('/payment/success/{order}', [PaymentController::class, 'success'])->name('payment.success');
 });

@@ -114,31 +114,46 @@
                 <div class="summary-card">
                     <h3>Ringkasan Pembayaran</h3>
                     
+                    <!-- Info Kost & Kamar -->
+                    @if(isset($bookingData))
+                    <div class="summary-item" style="border-bottom: 1px solid #e9ecef; padding-bottom: 15px; margin-bottom: 15px;">
+                        <div style="width: 100%;">
+                            <div style="font-weight: 600; color: #2d4538; margin-bottom: 5px;">{{ $bookingData['kost_nama'] }}</div>
+                            <div style="font-size: 14px; color: #666;">{{ $bookingData['kamar_tipe'] }}</div>
+                            @if($bookingData['kamar_ukuran'])
+                            <div style="font-size: 13px; color: #999; margin-top: 3px;">
+                                <i class="fas fa-ruler-combined"></i> {{ $bookingData['kamar_ukuran'] }}
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                    @endif
+                    
                     <div class="summary-item">
                         <span>Nomor pesanan</span>
-                        <span class="value">{{ $order->order_number ?? '11458523' }}</span>
+                        <span class="value">{{ $order->order_number ?? rand(10000000, 99999999) }}</span>
                     </div>
                     
                     <div class="summary-item">
                         <span>PPN</span>
-                        <span class="value">{{ $order->tax_rate ?? '12' }}%</span>
+                        <span class="value">{{ $ppn ?? 12 }}%</span>
                     </div>
                     
                     <div class="summary-item">
                         <span>Jumlah Pembayaran</span>
-                        <span class="value">Rp. {{ number_format($order->subtotal ?? 123.28, 2) }}</span>
+                        <span class="value">Rp {{ number_format($jumlahPembayaran ?? 0, 0, ',', '.') }}</span>
                     </div>
                     
                     <div class="summary-item">
                         <span>Jumlah Pesanan</span>
-                        <span class="value">Rp. {{ number_format($order->subtotal ?? 123.28, 2) }}</span>
+                        <span class="value">Rp {{ number_format($jumlahPesanan ?? 0, 0, ',', '.') }}</span>
                     </div>
                 </div>
 
                 <div class="total-card">
                     <div class="total-amount">
                         <span>Total Pembayaran</span>
-                        <h2>Rp. {{ number_format($order->total ?? 576.32, 2) }}</h2>
+                        <h2>Rp. {{ number_format($totalPembayaran ?? 0, 0, ',', '.') }}</h2>
                     </div>
                     <div class="invoice-icon">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none">

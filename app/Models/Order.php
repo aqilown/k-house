@@ -11,6 +11,7 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
+        'room_id',
         'order_number',
         'subtotal',
         'tax_rate',
@@ -35,11 +36,6 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    // HAPUS METHOD INI JIKA TIDAK DIPAKAI
-    // public function items()
-    // {
-    //     return $this->hasMany(OrderItem::class);
-    // }
 
     // Generate order number otomatis
     protected static function boot()

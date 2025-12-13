@@ -1,14 +1,16 @@
 <?php
-
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Kamar;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 
 class BookingController extends Controller
 {
+
+
     public function store(Request $request)
     {
         $request->validate([
@@ -28,7 +30,7 @@ class BookingController extends Controller
         $totalHarga = $kamar->harga_kamar * $request->durasi_booking;
 
         Booking::create([
-            'id_user' => auth()->id(),
+            'id_user' => Auth::id(),
             'id_kamar' => $request->id_kamar,
             'tanggal_booking' => now(),
             'tanggal_mulai' => $tanggalMulai,
@@ -40,23 +42,5 @@ class BookingController extends Controller
 
         return redirect()->route('user.dashboard')->with('success', 'Booking berhasil dibuat!');
     }
-
-    public function uploadPayment(Request $request, $id)
-    {
-        $request->validate([
-            'bukti_pembayaran' => 'required|image|max:2048',
-        ]);
-
-        $booking = Booking::findOrFail($id);
-
-        if ($request->hasFile('bukti_pembayaran')) {
-            $file = $request->file('bukti_pembayaran');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/payments'), $filename);
-
-            $booking->update(['bukti_pembayaran' => $filename]);
-        }
-
-        return back()->with('success', 'Bukti pembayaran berhasil diupload!');
-    }
 }
+    ?>

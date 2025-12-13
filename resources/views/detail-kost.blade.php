@@ -126,9 +126,22 @@
                             <h3>Rp {{ number_format($kamar->harga_bulanan, 0, ',', '.') }}</h3>
                             <p>Per bulan</p>
                             @if($kamar->jumlah_tersedia > 0)
-                            <a href="{{ route('payment') }}" class="btn-book">Booking Sekarang</a>
+                                @auth
+                                    <a href="{{ route('booking.prepare', [
+                                        'kost_id' => $kost->id,
+                                        'kamar_id' => $kamar->id
+                                    ]) }}" class="btn-book">
+                                        Booking Sekarang
+                                    </a>
+                                @else
+                                    <a href="{{ route('login') }}" class="btn-book">
+                                        Login untuk Booking
+                                    </a>
+                                @endauth
                             @else
-                            <button class="btn-book" style="background: #ccc; cursor: not-allowed;" disabled>Tidak Tersedia</button>
+                                <button class="btn-book" style="background: #ccc; cursor: not-allowed;" disabled>
+                                    Tidak Tersedia
+                                </button>
                             @endif
                         </div>
                     </div>

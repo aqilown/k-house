@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kost;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KostController extends Controller
 {
@@ -25,7 +26,7 @@ class KostController extends Controller
 
         Review::create([
             'id_kost' => $id,
-            'id_user' => auth()->id(),
+            'id_user' => Auth::id(),
             'rating' => $request->rating,
             'komentar' => $request->komentar,
         ]);
