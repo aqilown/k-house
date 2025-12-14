@@ -145,7 +145,7 @@
                     </div>
                     
                     <div class="summary-item">
-                        <span>Jumlah Pesanan</span>
+                        <span>Total Harga</span>
                         <span class="value">Rp {{ number_format($jumlahPesanan ?? 0, 0, ',', '.') }}</span>
                     </div>
                 </div>
